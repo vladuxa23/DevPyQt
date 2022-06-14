@@ -6,16 +6,11 @@ class Main(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.childWindow = Child()
-
-        self.button1 = QtWidgets.QPushButton("1", self)
-        self.button1.move(50, 0)
-        self.button2 = QtWidgets.QPushButton("2", self)
-        self.button2.move(0, 50)
-
-        self.button1.clicked.connect(self.showChild)
+        button1 = QtWidgets.QPushButton("Другое окно", self)
+        button1.clicked.connect(self.showChild)
 
     def showChild(self):
+        self.childWindow = Child()
         self.childWindow.show()
 
     def closeEvent(self, event: QtGui.QCloseEvent) -> None:
@@ -26,7 +21,7 @@ class Main(QtWidgets.QMainWindow):
 class Child(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
-        QtWidgets.QWidget.__init__(self, parent)
+        super().__init__(parent)
 
         label = QtWidgets.QLabel("Другое окно", self)
         label.move(10, 10)

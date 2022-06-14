@@ -1,24 +1,28 @@
 from PySide2 import QtCore, QtWidgets, QtGui
 
 
-class MyEventHandler(QtWidgets.QMainWindow):
+class MyEventHandler(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.button1 = QtWidgets.QPushButton("1", self)
-        self.button2 = QtWidgets.QPushButton("2", self)
-        self.button2.move(0, 50)
-        self.le = QtWidgets.QLineEdit(self)
-        self.le.move(50, 200)
+        main_layout = QtWidgets.QVBoxLayout()
 
+        self.button1 = QtWidgets.QPushButton("1")
+        self.button2 = QtWidgets.QPushButton("2")
+        self.le = QtWidgets.QLineEdit()
 
-        # self.button2.installEventFilter(self)
+        main_layout.addWidget(self.button1)
+        main_layout.addWidget(self.button2)
+        main_layout.addWidget(self.le)
 
-        # self.button2.clicked.connect(self.collect_data)
+        self.setLayout(main_layout)
 
+        self.button1.installEventFilter(self)
+        self.button2.installEventFilter(self)
+        self.le.installEventFilter(self)
 
     # def closeEvent(self, event):
-    #     event.ignore()
+    #
     #     reply = QtWidgets.QMessageBox.question(self, "Закрыть окно?",
     #                                            "Вы действительно хотите закрыть окно?",
     #                                            QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
@@ -27,13 +31,19 @@ class MyEventHandler(QtWidgets.QMainWindow):
     #         event.accept()
     #     else:
     #         event.ignore()
+    #
+    # def wheelEvent(self, event:QtGui.QWheelEvent) -> None:
+    #     print(event.angleDelta())
 
     # def event(self, event: QtCore.QEvent) -> bool:
     #     print(event.type())
+    #
     #     if event.type() == QtCore.QEvent.Type.Wheel:
     #         print(event.angleDelta())
+    #
     #     if event.type() == QtCore.QEvent.Close:
-    #         event.ignore()
+    #         event.setAccepted(False)
+    #
     #     if event.type() == QtCore.QEvent.Resize:
     #         print(f"Ширина: {event.size().width()}")
     #         print(f"Старая ширина: {event.oldSize().width()}")
@@ -41,22 +51,31 @@ class MyEventHandler(QtWidgets.QMainWindow):
     #
     #     return QtWidgets.QWidget.event(self, event)
 
-    # def eventFilter(self, watched: QtCore.QObject, event: QtCore.QEvent) -> bool:
-    #
-    #     if watched == self.button2 and event.type() == QtCore.QEvent.KeyPress:
-    #         print("key pressed")
-    #     if watched == self.button2 and event.type() == QtCore.QEvent.MouseButtonPress:
-    #         print("mouse pressed")
-    #     if watched == self.button2 and event.type() == QtCore.QEvent.MouseButtonDblClick:
-    #         print("mouse dbl pressed")
-    #
-    #     return super(MyEventHandler, self).eventFilter(watched, event)
-    #
     # def keyPressEvent(self, event: QtGui.QKeyEvent) -> None:
     #     print(event.count())
     #
     # def mouseDoubleClickEvent(self, event: QtGui.QMouseEvent) -> None:
     #     print(event.type())
+
+    def eventFilter(self, watched: QtCore.QObject, event: QtCore.QEvent) -> bool:
+
+        # print(watched)
+
+        if watched == self.button2 and event.type() == QtCore.QEvent.KeyPress:
+            print(f"key {event.text()} pressed")
+        if watched == self.button2 and event.type() == QtCore.QEvent.MouseButtonPress:
+            print("mouse pressed")
+        if ((watched == self.button2) or (watched == self.button1)) and event.type() == QtCore.QEvent.MouseButtonDblClick:
+            print("mouse dbl pressed")
+            self.hello(watched)
+
+        return super(MyEventHandler, self).eventFilter(watched, event)
+
+    def hello(self, watched):
+
+        self.le.setText(f"Hello {watched.text()}")
+
+
 
 
 if __name__ == "__main__":

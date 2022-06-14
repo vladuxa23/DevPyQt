@@ -1,4 +1,6 @@
-from PySide2 import QtWidgets
+import random
+
+from PySide2 import QtWidgets, QtCore
 from ui.P1_QtWidgetsAndWindows_AddUi_design import Ui_MainWindow
 
 
@@ -8,6 +10,19 @@ class MyMainWindow(QtWidgets.QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.ui.progressBar.installEventFilter(self)
+
+    def eventFilter(self, watched:QtCore.QObject, event:QtCore.QEvent) -> bool:
+
+
+        if watched == self.ui.progressBar and event.type() == QtCore.QEvent.MouseButtonPress:
+            self.updateData()
+
+
+    def updateData(self):
+        self.ui.lineEditOrbita.setText(f"{random.randint(10200, 10250)} км")
+
 
     #     self.initUi()
     #

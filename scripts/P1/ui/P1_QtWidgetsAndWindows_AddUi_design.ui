@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>924</width>
-    <height>705</height>
+    <width>1199</width>
+    <height>834</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -55,8 +55,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>907</width>
-         <height>666</height>
+         <width>1199</width>
+         <height>783</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -260,8 +260,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>433</width>
-                   <height>439</height>
+                   <width>195</width>
+                   <height>178</height>
                   </rect>
                  </property>
                  <attribute name="label">
@@ -387,8 +387,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>433</width>
-                   <height>439</height>
+                   <width>472</width>
+                   <height>453</height>
                   </rect>
                  </property>
                  <attribute name="label">
@@ -416,8 +416,8 @@ p, li { white-space: pre-wrap; }
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>433</width>
-                   <height>439</height>
+                   <width>109</width>
+                   <height>109</height>
                   </rect>
                  </property>
                  <attribute name="label">
@@ -438,8 +438,8 @@ p, li { white-space: pre-wrap; }
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>433</width>
-                   <height>439</height>
+                   <width>510</width>
+                   <height>318</height>
                   </rect>
                  </property>
                  <attribute name="label">
@@ -552,7 +552,7 @@ p, li { white-space: pre-wrap; }
                        </widget>
                       </item>
                       <item>
-                       <widget class="QLineEdit" name="lineEdit_5">
+                       <widget class="QLineEdit" name="lineEditOrbita">
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                           <horstretch>0</horstretch>
@@ -607,7 +607,7 @@ p, li { white-space: pre-wrap; }
                        </widget>
                       </item>
                       <item>
-                       <widget class="QLineEdit" name="lineEdit_6">
+                       <widget class="QLineEdit" name="lineEditSpeedRotation">
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                           <horstretch>0</horstretch>
@@ -662,7 +662,7 @@ p, li { white-space: pre-wrap; }
                        </widget>
                       </item>
                       <item>
-                       <widget class="QLineEdit" name="lineEdit_7">
+                       <widget class="QLineEdit" name="lineEditSpeedSA">
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                           <horstretch>0</horstretch>
@@ -1857,8 +1857,8 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>924</width>
-     <height>21</height>
+     <width>1199</width>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -1901,7 +1901,7 @@ p, li { white-space: pre-wrap; }
   </action>
  </widget>
  <resources>
-  <include location="MyResources.qrc"/>
+  <include location="../../res/MyResources.qrc"/>
  </resources>
  <connections/>
 </ui>
