@@ -1,9 +1,7 @@
 ### Python template
 # My
-scripts/PySide2_examples
-scripts/PyQt5_examples
-scripts/My_Example
-Descriptions
+examples
+descriptions
 
 # Pycharm
 .idea
