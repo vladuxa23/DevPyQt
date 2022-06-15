@@ -20,6 +20,8 @@ class MyApp(QtWidgets.QMainWindow):
 
         self.button2 = QtWidgets.QPushButton("stop")
         self.button2.clicked.connect(self.stopThread)
+        self.button2.setEnabled(False)
+        self.button2.clicked.connect(self.stopThread)
 
         self.lineEdit = QtWidgets.QLineEdit()
         self.lineEdit.setEnabled(False)
@@ -36,12 +38,22 @@ class MyApp(QtWidgets.QMainWindow):
 
         centralWidget.setLayout(layout)
 
-        self.t.started.connect(lambda: print("Поток запущен"))
-        self.t.finished.connect(lambda: print("Поток завершен"))
+        self.t.started.connect(self.startHandle)
+        self.t.finished.connect(self.stopHandle)
 
         # QtCore.Qt.QueuedConnection - При отправке сигнал ставится в очередь до тех пор, пока цикл событий не сможет доставить его в слот.
         self.t.mysignal.connect(self.setLineEditText, QtCore.Qt.AutoConnection)
         # self.t.mysignal.connect(self.setLineEditText, QtCore.Qt.QueuedConnection)
+
+    def startHandle(self):
+        print("Обработка начата")
+        self.button.setEnabled(False)
+        self.button2.setEnabled(True)
+
+    def stopHandle(self):
+        print("Поток завершен")
+        self.button.setEnabled(True)
+        self.button2.setEnabled(False)
 
     def setLineEditText(self, text):
         self.lineEdit.setText(text)

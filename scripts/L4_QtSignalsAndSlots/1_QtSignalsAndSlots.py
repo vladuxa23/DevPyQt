@@ -1,3 +1,4 @@
+import random
 import sys
 from PySide2 import QtCore, QtWidgets, QtGui
 from functools import partial
@@ -8,7 +9,7 @@ def print_something():
 
 class MySignalsExample(QtWidgets.QWidget):
     def __init__(self, parent=None):
-        QtWidgets.QWidget.__init__(self, parent)
+        super().__init__(parent)
 
         self.setFixedSize(200, 200)
 
@@ -20,7 +21,6 @@ class MySignalsExample(QtWidgets.QWidget):
         self.cmbbx.addItems(["1", "2", "3"])
         self.cmbbx.setEditable(True)
 
-
         layout.addWidget(self.button1)
         layout.addWidget(self.button2)
         layout.addWidget(self.cmbbx)
@@ -30,11 +30,11 @@ class MySignalsExample(QtWidgets.QWidget):
 
         # Ссылка на  функцию
         # self.button1.clicked.connect(print_something)
-        self.button1.clicked.connect(self.print_sender)
+        # self.button1.clicked.connect(self.print_sender)
 
         # Метод класса
         # self.button2.clicked.connect(partial(self.print_name, "54321"))
-        self.button2.clicked.connect(self.print_sender)
+        # self.button2.clicked.connect(self.print_sender)
 
         # Ссылка на класс с методом __call__
         # self.button2.clicked.connect(Test("Вася"))
@@ -42,8 +42,7 @@ class MySignalsExample(QtWidgets.QWidget):
         # Анонимная функция
         # self.cmbbx.currentIndexChanged.connect(
         #     lambda: print(f"Установлено значение {self.cmbbx.currentText()}"))
-        self.cmbbx.currentTextChanged.connect(
-            lambda: print(f"Установлено значение {self.cmbbx.currentText()}"))
+
         # self.button1.clicked.connect(lambda: print(f"button1 отправлен сигнал"))
 
         # Ссылка на слот
@@ -56,6 +55,7 @@ class MySignalsExample(QtWidgets.QWidget):
 
     @QtCore.Slot()
     def print_sender(self):
+        print(self.sender())
         dct = {"1": "Делай первое действие", "2": "Делай второе действие"}
         print(dct.get(self.sender().text()))
 
