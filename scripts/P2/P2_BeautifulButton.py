@@ -23,7 +23,7 @@ class DifferentPBColor(QtWidgets.QWidget):
         # Настройка кнопки
         pb = QtWidgets.QPushButton()
         pb.setLayout(pb_layout)
-        pb.setStyleSheet("background-color: #404E4D;")
+        # pb.setStyleSheet("background-color: #404E4D;")
 
         # Настройка компоновки основного виджета
         layout = QtWidgets.QVBoxLayout()

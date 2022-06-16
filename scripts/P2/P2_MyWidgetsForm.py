@@ -2,40 +2,6 @@ from PySide2 import QtCore, QtWidgets, QtGui
 from ui import P2_QtEventHandling_MyWidgetsForm_design
 import time
 
-# Задания:
-# ВЫВОД В ЛОГ
-# 1. Перемещение окна по заданным координатам
-#
-# screenWidth = QtWidgets.QApplication.screenAt(self.pos()).size().width()
-# screenHeight = QtWidgets.QApplication.screenAt(self.pos()).size().height()
-
-# 2. Получение параметров экрана + установить для элемента shortCut (горячую клавишу)
-#     a. Кол-во экранов
-#     b. Текущее основное окно
-#     c. Разрешение экрана
-#     d. На каком экране окно находится
-#     e. Размеры окна
-#     f. Минимальные размеры окна
-#     g. Текущее положение (координаты) окна
-#     h. Координаты центра приложения
-# 3. Отслеживани bе состояния окна (свернуто/развёрнуто/активно/отображено + время)
-# ВЫВОД В ТЕРМИНАЛ
-# 4. Информация о координатах при перемещении окна
-# 5. Информиция о размерах окна при изменении размера
-# 6. Значение кнопки когда она была нажата
-#
-# eventFilter
-# 7. Добавить в dial возможность установки значений кнопками клавиатуры(+ и -), выводить новые значения в лог
-#
-# slots
-# 8. Законектить между собой QDial, QSlider, QLCDNumber
-# 9. Для QLCDNumber сделать отображение в различных системах счисления
-#
-# QSettings
-# 10. Сохранять значение и режима LCDNumber в системные настройки, при перезапуске программы выводить в него
-# соответствующие значения
-
-
 # noinspection PyCallingNonCallable
 class MyWidgetsForm(QtWidgets.QWidget):
     def __init__(self, parent=None):
@@ -46,6 +12,8 @@ class MyWidgetsForm(QtWidgets.QWidget):
         self.setMouseTracking(True)
 
         self.ui.comboBox.addItems(["HEX", "DEC", "OCT", "BIN"])
+        self.ui.pushButtonGetData.setShortcut(QtGui.QKeySequence("F1"))
+
         self.ui.comboBox.currentIndexChanged.connect(self.changeLCDview)
         self.ui.pushButtonGetData.clicked.connect(self.getScreenInfo)
         self.ui.pushButtonLB.clicked.connect(self.editPosition)
@@ -53,9 +21,6 @@ class MyWidgetsForm(QtWidgets.QWidget):
         self.ui.pushButtonRB.clicked.connect(self.editPosition)
         self.ui.pushButtonRT.clicked.connect(self.editPosition)
         self.ui.pushButtonCenter.clicked.connect(self.editPosition)
-
-        self.ui.pushButtonGetData.setShortcut(QtGui.QKeySequence("F1"))
-
         self.ui.dial.valueChanged.connect(self.showLCD)
         self.ui.horizontalSlider.valueChanged.connect(self.showLCD)
 
@@ -94,23 +59,23 @@ class MyWidgetsForm(QtWidgets.QWidget):
         screenHeight = QtWidgets.QApplication.screenAt(self.pos()).size().height()
 
         position = {"Лево/Верх":(0, 0),
-                    "Лево/Низ": (0, screenHeight-self.height()-75),
+                    "Лево/Низ": (0, screenHeight-self.height()-100),
                     "Центр": (screenWidth/2 - self.width()/2, screenHeight/2 - self.height()/2),
                     "Право/Верх": (screenWidth - self.width(), 0),
-                    "Право/Низ": (screenWidth- self.width(), screenHeight-self.height()-75)}
+                    "Право/Низ": (screenWidth- self.width(), screenHeight-self.height()-100)}
 
         self.move(position.get(buttonText)[0], position.get(buttonText)[1])
 
     def showLCD(self):
         if self.sender().objectName() == "dial":
             value = self.ui.dial.value()
+            self.ui.horizontalSlider.setValue(value)
 
         elif self.sender().objectName() == "horizontalSlider":
             value = self.ui.horizontalSlider.value()
+            self.ui.dial.setValue(value)
 
         self.ui.lcdNumber.display(value)
-        self.ui.horizontalSlider.setValue(value)
-        self.ui.dial.setValue(value)
 
     def changeLCDview(self):
         # print(123)
@@ -120,8 +85,6 @@ class MyWidgetsForm(QtWidgets.QWidget):
 
         a[self.ui.comboBox.currentText()]()
         print(self.ui.lcdNumber.mode())
-
-
 
     # ====== #
     # EVENTS #
@@ -168,7 +131,8 @@ class MyWidgetsForm(QtWidgets.QWidget):
 
     def event(self, event: QtCore.QEvent) -> bool:
         if event.type() == QtCore.QEvent.KeyPress:
-            print(f"{event.text()} is pressed")
+            # print(f"{event.text()} is pressed")
+            print(f"{event.key()} is pressed")
 
         return QtWidgets.QWidget.event(self, event)
 
