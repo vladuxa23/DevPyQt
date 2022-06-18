@@ -1,6 +1,7 @@
 import sys
 from PySide2 import QtWidgets, QtCore, QtGui  # Импорт класса, который содержит элементы окна
-from LectionRepeatForm import Ui_Form
+from mirror_window_design import Ui_Form
+
 
 class RepeatLesson(QtWidgets.QWidget):  # Наследуемся от QWidget
 
@@ -14,26 +15,31 @@ class RepeatLesson(QtWidgets.QWidget):  # Наследуемся от QWidget
 
     def initUi(self):
         self.setWindowTitle("Моя программа")
+        self.ui.pushButton.setText("Очистить")
 
-        self.ui.pushButton.clicked.connect(self.onPushButtonClicked)
-        self.ui.lineEditSource.textChanged.connect(self.onPushButtonClicked)
+        self.ui.pushButton.clicked.connect(self.clear_lineedit)
+        self.ui.lineEditSource.textChanged.connect(self.mirror_text)
 
-    def onPushButtonClicked(self):
-        # print(self.sender())
-        source_text = self.ui.lineEditSource.text()
-        self.ui.lineEditResult.setText(source_text[::-1])
+    def mirror_text(self):
+        print(self.sender().objectName())
+        src_text = self.ui.lineEditSource.text()
+        self.ui.lineEditResult.setText(src_text[::-1])
+
+    def clear_lineedit(self):
+        self.ui.lineEditSource.setText("")
+        self.ui.lineEditResult.setText("")
 
     def event(self, event:QtCore.QEvent) -> bool:
+        print(event.type())
         if event.type() == QtCore.QEvent.Move:
-            print(event.pos().x(), event.pos().y())
+            print(self.pos())
 
         return QtWidgets.QWidget.event(self, event)
 
     def closeEvent(self, event:QtGui.QCloseEvent) -> None:
         print("Пока")
 
-
-
+        return QtWidgets.QWidget.closeEvent(self, event)
 
 
 if __name__ == "__main__":

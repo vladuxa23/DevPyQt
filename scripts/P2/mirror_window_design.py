@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'LectionRepeatForm.ui'
+## Form generated from reading UI file 'mirror_window_design.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,9 +17,9 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(375, 70)
-        Form.setMinimumSize(QSize(375, 70))
-        Form.setMaximumSize(QSize(375, 70))
+        Form.resize(400, 75)
+        Form.setMinimumSize(QSize(400, 75))
+        Form.setMaximumSize(QSize(400, 75))
         self.verticalLayout = QVBoxLayout(Form)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout = QHBoxLayout()
