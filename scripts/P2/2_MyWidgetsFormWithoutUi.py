@@ -113,6 +113,73 @@ class MyWindow(QtWidgets.QWidget):
 
         self.setLayout(main_layout)
 
+        # ГРУППА 2021-9/2
+        self.pb_center.clicked.connect(self.onPBCClicked)
+        self.dial.valueChanged.connect(self.valueEdit)
+        self.slider.valueChanged.connect(self.valueEdit)
+
+        self.dial.installEventFilter(self)
+
+    def onPBCClicked(self):
+        size = QtWidgets.QApplication.screenAt(self.pos()).availableGeometry()
+        scr_width = size.width()
+        scr_height = size.height()
+
+        pr_width = self.width()
+        pr_height = self.height()
+
+        self.move(scr_width / 2 - pr_width / 2, scr_height / 2 - pr_height / 2)
+
+    def moveEvent(self, event:QtGui.QMoveEvent) -> None:
+        print(self.pos().x(), self.pos().y())
+
+    def onPBLTClicked(self):
+        pass
+
+    def onPBRTClicked(self):
+        pass
+
+    def onPBLBClicked(self):
+        pass
+
+    def onPBRBClicked(self):
+        pass
+
+    # def keyPressEvent(self, event:QtGui.QKeyEvent) -> None:
+    #     print(event.key())
+    #     print(event.text())
+
+    def valueEdit(self):
+        pass
+        # if self.sender().objectName() == "dial":
+        #     print("Изменяет значение dial")
+        #     print(self.dial.value())
+        #     # print(self.dial.setValue())
+        #
+        # if self.sender().objectName() == "slider":
+        #     print("Изменяет значение slider")
+
+
+    def eventFilter(self, watched:QtCore.QObject, event:QtCore.QEvent) -> bool:
+        # print(watched)
+
+        if watched.objectName() == "dial" and event.type() == QtCore.QEvent.KeyPress:
+            if event.text() == "+":
+                self.dial.setValue(self.dial.value() + 1)
+            if event.text() == "-":
+                self.dial.setValue(self.dial.value() - 1)
+
+        return QtWidgets.QWidget.eventFilter(self, watched, event)
+
+
+
+
+
+
+
+
+
+
     # ГРУППА 2021-9/1 + 2021-9/3
     #     self.pb_left_top.clicked.connect(self.onPBLTClicked)
     #     self.pb_center.clicked.connect(self.onPBCClicked)
