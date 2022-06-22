@@ -2,32 +2,34 @@ import time
 from PySide2 import QtCore, QtWidgets, QtGui
 
 
-class MyDrawing(QtWidgets.QMainWindow):
+class MyDrawing(QtWidgets.QWidget):
     def __init__(self, parent=None):
-        QtWidgets.QMainWindow.__init__(self, parent)
+        super(MyDrawing, self).__init__(parent)
 
     def paintEvent(self, event: QtGui.QPaintEvent) -> None:
         painter = QtGui.QPainter(self)
 
         # p1 = QtCore.QPoint(10, 10)
         # p2 = QtCore.QPoint(100, 60)
-        # #
-        # painter.drawLine(p1, p2)
+        painter.drawLine(p1, p2)
+
         pen = QtGui.QPen()
-        pen.setWidth(5)
-        pen.setStyle(QtCore.Qt.DashLine)
-        brush = QtGui.QBrush(QtCore.Qt.red)
+        pen.setWidth(3)
+        pen.setStyle(QtCore.Qt.DashDotLine)
+
+        brush = QtGui.QBrush(QtCore.Qt.darkGray)
         brush.setStyle(QtCore.Qt.Dense3Pattern)
-        # pen.setBrush(brush)
+        pen.setBrush(brush)
         painter.setPen(pen)
-        painter.setBrush(brush)
-        #
+        # painter.setBrush(brush)
+
         rects = [QtCore.QRect(10, 10, 100, 60),
                  QtCore.QRect(20, 20, 100, 60)]
         painter.drawRects(rects)
 
-        # painter.drawArc(50, 20, 100, 70, 16*0, 16*211)
+        # painter.drawArc(50, 20, 500, 200, 4*0, 16*90)
 
+        # painter.drawEllipse(50, 20, 500, 200)
 
         # painter.drawRect(10, 10, 100, 60)
         # painter.drawLines([QtCore.QLine(10, 10, 100, 60),

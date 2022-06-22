@@ -20,19 +20,19 @@ class MySpalshExample(QtWidgets.QMainWindow):
         self.pushButton.setIcon(QtGui.QIcon(":/ico/img/Word.ico"))
         self.setCentralWidget(self.pushButton)
 
-        # self.loadGUI()
-        self.show()
+        self.loadGUI()
+        # self.show()
 
     def loadGUI(self):
-        # splash = QtWidgets.QSplashScreen(QtGui.QPixmap(":/graphics/img/pyside_logo.png"))
-        splash = MySpalsh(QtGui.QPixmap(":/graphics/img/pyside_logo.png"))
-        splash.showMessage("Загрузка данных... 0%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom, QtCore.Qt.white)
+        splash = QtWidgets.QSplashScreen(QtGui.QPixmap(":/graphics/img/pyside_logo.png"))
+        # splash = MySpalsh(QtGui.QPixmap(":/graphics/img/pyside_logo.png"))
+        splash.showMessage("Загрузка данных...     0%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom, QtCore.Qt.white)
         splash.show()
 
         for _ in range(100):
             time.sleep(0.05)
             if (_ % 10) == 0:
-                splash.showMessage(f"Загрузка данных... {_}%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter, QtCore.Qt.white)
+                splash.showMessage(f"Загрузка данных...     {_}%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter, QtCore.Qt.white)
 
         splash.finish(self)
         self.show()

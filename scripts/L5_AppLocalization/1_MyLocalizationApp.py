@@ -84,7 +84,7 @@ class MyTranslateApp(QtWidgets.QMainWindow):
     def setLocalization(self, lang):
         """Функция, являющаяся слотом для кнопок button_ru и button_en"""
 
-        self.translator.load(f"translate/to_{lang}")  # Загружаем созданный нами файл qm, можно указывать без расширения
+        self.translator.load(f"translations/to_{lang}")  # Загружаем созданный нами файл qm, можно указывать без расширения
         # self.translator.load(f"{lang}_ver.qm")  # Загружаем созданный нами файл qm, можно указывать без расширения
         self.translatorApp.load(f"{self.QT_TRANSLATIONS_PATH}qtbase_{lang}")  # Загружаем файл qm для ядра нашего
         # приложения, т.е. всех стандартных
@@ -99,6 +99,7 @@ class MyTranslateApp(QtWidgets.QMainWindow):
         self.labelName.setText(QtWidgets.QApplication.translate("MyTranslateApp", "Имя"))
         self.labelSurname.setText(QtWidgets.QApplication.translate("MyTranslateApp", "Фамилия"))
         self.button_input.setText(QtWidgets.QApplication.translate("MyTranslateApp", "Ввод"))
+        self.setWindowTitle(QtWidgets.QApplication.translate("MyTranslateApp", "Переводчик"))
 
     def closeEvent(self, event):
         """Функция-обработчик события закрытия окна"""

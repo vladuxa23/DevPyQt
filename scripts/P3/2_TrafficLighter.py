@@ -1,17 +1,14 @@
 import time
 from PySide2 import QtCore, QtWidgets, QtGui
 
-# Задания
-
-# Реализовать светофор с возможностью смены цвета на нём по клику.
 
 class MyDrawing(QtWidgets.QPushButton):
     def __init__(self, parent=None):
         super().__init__(parent)
 
         # Устанавливаем размеры
-        self.setMinimumSize(60, 180)
-        self.setMaximumSize(60, 180)
+        # self.setMinimumSize(60, 180)
+        # self.setMaximumSize(60, 180)
 
         self.clicked.connect(self.changeColor)
 
@@ -36,8 +33,8 @@ class MyDrawing(QtWidgets.QPushButton):
             if self.count == i:
                 painter.setBrush(QtGui.QBrush(traffic_lights_color.get(i)))
 
-            painter.drawEllipse(5, 5 + ellipse_y, 50, 50)
-            ellipse_y += 60
+            painter.drawEllipse(5, 5 + ellipse_y, self.width() - 10, (self.height() - 10)/3)
+            ellipse_y += ((self.height()-10)/3)
 
 
 if __name__ == "__main__":

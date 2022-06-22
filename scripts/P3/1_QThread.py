@@ -5,13 +5,6 @@ from PySide2 import QtCore, QtWidgets
 from ui import P3_HardwareIndependentIO_QThread_design
 
 
-# ЗАДАНИЯ:
-# 1. Реализовать таймер до 0 с возможностью остановки
-# 2. Бесконечная проверка доступности сайта с возможностью остановки и установки времени задержки (при запуске)
-# 3. Получение системных параметров (запуск при старте программы), предусмотреть "горячий" режим установки времени задержки
-
-# Все 3 блока должны быть реализованы в одном окне и работать одновременно друг с другом
-
 class QThreadPractice(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -76,6 +69,7 @@ class QThreadPractice(QtWidgets.QWidget):
 
     def setSystemInfoDelay(self):
         self.systemInfo.delay = self.ui.spinBoxSystemInfoDelay.value()
+
 
 class MyTimer(QtCore.QThread):
     timeLeftSignal = QtCore.Signal(int)
