@@ -12,6 +12,7 @@ class QThreadPractice(QtWidgets.QWidget):
         self.ui = P3_HardwareIndependentIO_QThread_design.Ui_Form()
         self.ui.setupUi(self)
 
+
         self.timerThread = MyTimer()
         self.timerThread.timeLeftSignal.connect(self.updateLineEditTimeLeft, QtCore.Qt.AutoConnection)
         self.timerThread.finished.connect(self.timerFinished)
