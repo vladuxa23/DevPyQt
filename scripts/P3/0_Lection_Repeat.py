@@ -81,6 +81,7 @@ class MyApp(QtWidgets.QWidget):
 
         self.pbStop = QtWidgets.QPushButton()
         self.pbStop.setText("Стоп")
+        self.pbStop.setEnabled(False)
 
         main_layout = QtWidgets.QVBoxLayout()
         main_layout.addWidget(self.lineEdit)
@@ -99,23 +100,44 @@ class MyApp(QtWidgets.QWidget):
         self.timerThread.started.connect(self.timerThreadStarted)
         self.timerThread.finished.connect(self.timerThreadFinished)
 
+        self.timerThread.timerSignal.connect(self.timerSignalEmit)
+
 
     def onPBStartClicked(self):
+        self.timerThread.timerCount = int(self.lineEdit.text())
         self.timerThread.start()
 
     def timerThreadStarted(self):
-        pass
+        self.pbStart.setEnabled(False)
+        self.pbStop.setEnabled(True)
+        self.lineEdit.setEnabled(False)
 
     def timerThreadFinished(self):
-        pass
+        self.pbStart.setEnabled(True)
+        self.pbStop.setEnabled(False)
+        self.lineEdit.setEnabled(True)
+
+        self.lineEdit.setText("")
+
+    def timerSignalEmit(self, emit_value):
+        self.lineEdit.setText(emit_value)
 
 
 class TimerThread(QtCore.QThread):
+    timerSignal = QtCore.Signal(str)
+    
+    def __init__(self, parent=None):
+        super(TimerThread, self).__init__(parent)
+
+        self.timerCount = None
 
     def run(self):
-        for i in range(10, 0, -1):
-            print(i)
+        
+        for i in range(self.timerCount, 0, -1):
+            # print(i)
+            self.timerSignal.emit(str(i))
             time.sleep(1)
+
 
 
 
