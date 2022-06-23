@@ -95,7 +95,18 @@ class MyApp(QtWidgets.QWidget):
     def initThreads(self):
         self.timerThread = TimerThread()
 
+        # init signals
+        self.timerThread.started.connect(self.timerThreadStarted)
+        self.timerThread.finished.connect(self.timerThreadFinished)
+
+
     def onPBStartClicked(self):
+        self.timerThread.start()
+
+    def timerThreadStarted(self):
+        pass
+
+    def timerThreadFinished(self):
         pass
 
 
