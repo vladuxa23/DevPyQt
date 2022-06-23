@@ -92,6 +92,7 @@ class MyApp(QtWidgets.QWidget):
 
         # init signals
         self.pbStart.clicked.connect(self.onPBStartClicked)
+        self.pbStop.clicked.connect(self.onPBStopClicked)
 
     def initThreads(self):
         self.timerThread = TimerThread()
@@ -102,10 +103,16 @@ class MyApp(QtWidgets.QWidget):
 
         self.timerThread.timerSignal.connect(self.timerSignalEmit)
 
-
     def onPBStartClicked(self):
-        self.timerThread.timerCount = int(self.lineEdit.text())
-        self.timerThread.start()
+        try:
+            self.timerThread.timerCount = int(self.lineEdit.text())
+            self.timerThread.start()
+        except ValueError:
+            self.lineEdit.setText("")
+            QtWidgets.QMessageBox.warning(self, "Ошибка", "Введено неправильное значение")
+
+    def onPBStopClicked(self):
+        self.timerThread.status = False
 
     def timerThreadStarted(self):
         self.pbStart.setEnabled(False)
@@ -130,13 +137,19 @@ class TimerThread(QtCore.QThread):
         super(TimerThread, self).__init__(parent)
 
         self.timerCount = None
+        self.status = True
 
     def run(self):
-        
-        for i in range(self.timerCount, 0, -1):
-            # print(i)
-            self.timerSignal.emit(str(i))
+        self.status = True
+        while self.status:
             time.sleep(1)
+            self.timerCount -= 1
+            self.timerSignal.emit(str(self.timerCount))
+
+        # for i in range(self.timerCount, 0, -1):
+        #     # print(i)
+        #     self.timerSignal.emit(str(i))
+        #     time.sleep(1)
 
 
 
