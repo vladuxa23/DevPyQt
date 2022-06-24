@@ -209,6 +209,7 @@ class MyApp(QtWidgets.QWidget):
         # init threads signals
         self.threadTimer.started.connect(self.threadTimerStarted)
         self.threadTimer.finished.connect(self.threadTimerFinished)
+        self.threadTimer.timerSignal.connect(self.threadTimerTimerSignal)
 
     def initUi(self):
         # init ui
@@ -231,6 +232,7 @@ class MyApp(QtWidgets.QWidget):
 
         # init ui signals
         self.pbStart.clicked.connect(self.onPBStartClicked)
+        self.pbStop.clicked.connect(self.onPBStopClicked)
 
     # widgets slots
     def onPBStartClicked(self):
@@ -238,33 +240,52 @@ class MyApp(QtWidgets.QWidget):
             self.threadTimer.timerCount = int(self.lineEditCount.text())
             self.threadTimer.start()
         except ValueError:
-            QtWidgets.QMessageBox.warning(self, "Ошибка", "Значение таймера может быть только целочисленным")
+            QtWidgets.QMessageBox.warning(self, "Ошибка!", "Значение таймера может быть только целочисленным")
+
+    def onPBStopClicked(self):
+        self.threadTimer.status = False
 
     # threads slots
     def threadTimerStarted(self):
         self.pbStart.setEnabled(False)
         self.pbStop.setEnabled(True)
+        self.lineEditCount.setEnabled(False)
 
     def threadTimerFinished(self):
         self.pbStart.setEnabled(True)
         self.pbStop.setEnabled(False)
+        self.lineEditCount.setEnabled(True)
+        self.lineEditCount.setText("")
+
+        QtWidgets.QMessageBox.about(self, "Успешно!", "Таймер закончился!")
+
+    def threadTimerTimerSignal(self, emit_value):
+        self.lineEditCount.setText(emit_value)
 
 
 class TimerThread(QtCore.QThread):
+    timerSignal = QtCore.Signal(str)
 
     def __init__(self, parent=None):
         super().__init__(parent)
 
         self.timerCount = None
+        self.status = None
 
     def run(self):
+        self.status = True
 
         if self.timerCount is None:
             self.timerCount = 10
 
-        for i in range(self.timerCount, 0, -1):
-            print(i)
+        while self.status:
+            if self.timerCount < 1:
+                break
+
             time.sleep(1)
+            self.timerCount -= 1
+            self.timerSignal.emit(str(self.timerCount))
+
 
 
 if __name__ == '__main__':
