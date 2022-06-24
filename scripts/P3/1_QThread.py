@@ -2,121 +2,229 @@ import time
 import psutil
 import requests
 from PySide2 import QtCore, QtWidgets
-from ui import P3_HardwareIndependentIO_QThread_design
+from ui.QThread_design import Ui_Form
 
 
 class QThreadPractice(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.ui = P3_HardwareIndependentIO_QThread_design.Ui_Form()
+        self.ui = Ui_Form()
         self.ui.setupUi(self)
 
-        self.timerThread = MyTimer()
-        self.timerThread.timeLeftSignal.connect(self.updateLineEditTimeLeft, QtCore.Qt.AutoConnection)
-        self.timerThread.finished.connect(self.timerFinished)
+        self.timerThread = None
+        self.urlCheckerThread = None
+        self.systemInfoThread = None
 
-        self.urlChecker = MyUrlChecker()
-        self.urlChecker.urlResponceSignal.connect(self.updateUrlCheck, QtCore.Qt.AutoConnection)
+        self.initThreads()
+        self.initUi()
 
-        self.systemInfo = SystemInfoThread()
-        self.systemInfo.start()
-        self.systemInfo.systemInfoSignal.connect(self.updateSystemInfo, QtCore.Qt.AutoConnection)
+    def initThreads(self):
+        # init threads
+        self.timerThread = TimerThread()
+        self.urlCheckerThread = UrlCheckerThread()
+        self.systemInfoThread = SystemInfoThread()
+
+        # init threads signals
+        self.timerThread.timerSignal.connect(self.timerThreadTimerSignal)
+        self.timerThread.finished.connect(self.timerThreadFinished)
+
+        self.urlCheckerThread.urlSignal.connect(self.urlCheckerThreadUrlSignal)
+
+        self.systemInfoThread.systemSignal.connect(self.systemInfoThreadSystemSignal)
+
+        # run threads
+        self.systemInfoThread.start()
+
+    def initUi(self):
+
+        # init widget signals
         self.ui.spinBoxSystemInfoDelay.valueChanged.connect(self.setSystemInfoDelay)
 
-        self.ui.pushButtonTimerStart.clicked.connect(self.handleTimer)
-        self.ui.pushButtonUrlCheckStart.clicked.connect(self.handleUrl)
+        self.ui.pushButtonTimerStart.clicked.connect(self.onPushButtonTimerStartClicked)
+        self.ui.pushButtonUrlCheckStart.clicked.connect(self.onPushButtonUrlCheckStartClicked)
 
     # Слоты для таймера
-    def handleTimer(self):
+    def onPushButtonTimerStartClicked(self) -> None:
+        """
+        Слот для кнопки потока self.timerThread
+
+        :return: None
+        """
+
         if self.ui.pushButtonTimerStart.isChecked():
             self.ui.lineEditTimerEnd.setText(str(self.ui.spinBoxTimerCount.value()))
             self.timerThread.setTimer(self.ui.spinBoxTimerCount.value())
             self.timerThread.start()
             self.ui.pushButtonTimerStart.setText("Стоп")
         else:
-            self.timerFinished()
+            self.timerThreadFinished()
 
-    def timerFinished(self):
+    def timerThreadTimerSignal(self, count) -> None:
+        """
+        Слот для обработки сигнала timerSignal, который шлёт данные из потока self.timerThread
+
+        :param count: число оставшихся секунд
+        :return: None
+        """
+
+        self.ui.lineEditTimerEnd.setText(str(count))
+
+    def timerThreadFinished(self) -> None:
+        """
+        Слот для сигнала finished потока self.timerThread
+
+        :return: None
+        """
+
         self.ui.pushButtonTimerStart.setText("Начать отсчёт")
         self.ui.pushButtonTimerStart.setChecked(False)
         self.timerThread.status = False
 
     # Слоты для url
-    def handleUrl(self):
+    def onPushButtonUrlCheckStartClicked(self) -> None:
+        """
+        Слот для кнопки потока self.urlCheckerThread
+
+        :return: None
+        """
+
         if self.ui.pushButtonUrlCheckStart.isChecked():
-            self.urlChecker.setUrl(self.ui.lineEditURL.text())
-            self.urlChecker.setDelay(self.ui.spinBoxUrlCheckTime.value())
-            self.urlChecker.start()
+            self.urlCheckerThread.setUrl(self.ui.lineEditURL.text())
+            self.urlCheckerThread.setDelay(self.ui.spinBoxUrlCheckTime.value())
+            self.urlCheckerThread.start()
             self.ui.pushButtonUrlCheckStart.setText("Стоп")
         else:
             self.ui.pushButtonUrlCheckStart.setText("Начать проверку")
             self.ui.pushButtonUrlCheckStart.setChecked(False)
-            self.urlChecker.status = False
+            self.urlCheckerThread.status = False
 
-    def updateLineEditTimeLeft(self, count):
-        self.ui.lineEditTimerEnd.setText(str(count))
+    def urlCheckerThreadUrlSignal(self, status_code) -> None:
+        """
+        Слот для обработки сигнала urlSignal, который шлёт данные из потока self.urlCheckerThread
 
-    def updateUrlCheck(self, status_code):
+        :param status_code: статус код, который вернул сайт
+        :return: None
+        """
+
         self.ui.plainTextEditUrlCheckLog.appendPlainText(f"{time.ctime()} - Статус {status_code}")
 
     # Слоты для system_info
-    def updateSystemInfo(self, info_list):
+    def systemInfoThreadSystemSignal(self, info_list) -> None:
+        """
+        Слот для обработки сигнала systemSignal, который шлёт данные из потока self.systemInfo
+
+        :param info_list: значение полученное из потока self.systemInfo
+        :return: None
+        """
+
         self.ui.progressBarCPU.setValue(info_list[0])
         self.ui.labelCPUPercent.setText(f"{info_list[0]} %")
         self.ui.progressBarRAM.setValue(info_list[1])
         self.ui.labelRAMPercent.setText(f"{info_list[1]} %")
 
-    def setSystemInfoDelay(self):
-        self.systemInfo.delay = self.ui.spinBoxSystemInfoDelay.value()
+    def setSystemInfoDelay(self) -> None:
+        """
+        Слот для установки значения времени задержки обновления системных параметров
+
+        :return: None
+        """
+
+        self.systemInfoThread.delay = self.ui.spinBoxSystemInfoDelay.value()
 
 
-class MyTimer(QtCore.QThread):
-    timeLeftSignal = QtCore.Signal(int)
+class TimerThread(QtCore.QThread):
+    timerSignal = QtCore.Signal(int)
 
-    def setTimer(self, count):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        self.__timerCount = None
+
+    def setTimer(self, count) -> None:
+        """
+        Метод для установки начального значения таймера
+
+        :param count: значение таймера
+        :return: None
+        """
+
         self.__timerCount = count
 
-    def run(self):
+    def run(self) -> None:
         self.status = True
 
         while self.status:
-            if not self.__timerCount == 0:
-                self.__timerCount -= 1
-                time.sleep(1)
-                self.timeLeftSignal.emit(self.__timerCount)
-            else:
-                self.status = False
+            if self.__timerCount < 1:
+                break
+
+            time.sleep(1)
+            self.__timerCount -= 1
+            self.timerSignal.emit(self.__timerCount)
 
 
-class MyUrlChecker(QtCore.QThread):
-    urlResponceSignal = QtCore.Signal(int)
+class UrlCheckerThread(QtCore.QThread):
+    urlSignal = QtCore.Signal(int)
 
-    def setUrl(self, url):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        self.__url = None
+        self.__delay = None
+        self.status = None
+
+    def setUrl(self, url) -> None:
+        """
+        Метод для установки url который будем проверять
+
+        :param url: адрес сайта для проверки
+        :return: None
+        """
+
         self.__url = url
 
-    def setDelay(self, delay):
+    def setDelay(self, delay) -> None:
+        """
+        Метод для установки времени задержки обновления сайта
+
+        :param delay: время задержки обновления информации о доступности сайта
+        :return: None
+        """
+
         self.__delay = delay
 
-    def run(self):
+    def run(self) -> None:
+
+        if self.__url is None:
+            self.__url = "http://www.google.com"
+
+        if self.__delay is None:
+            self.__delay = 10
+
         self.status = True
 
         while self.status:
-            responce = requests.get(self.__url)
-            self.urlResponceSignal.emit(responce.status_code)
+            response = requests.get(self.__url)
+            self.urlSignal.emit(response.status_code)
             time.sleep(self.__delay)
 
 
 class SystemInfoThread(QtCore.QThread):
-    systemInfoSignal = QtCore.Signal(list)
+    systemSignal = QtCore.Signal(list)
 
-    def run(self):
-        self.delay = 1
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.delay = None
+
+    def run(self) -> None:
+        if self.delay is None:
+            self.delay = 1
+
         while True:
             cpu_value = psutil.cpu_percent()
             ram = psutil.virtual_memory()
             ram_value = int(ram.used * 100 / ram.total)
-            self.systemInfoSignal.emit([cpu_value, ram_value])
+            self.systemSignal.emit([cpu_value, ram_value])
             time.sleep(self.delay)
 
 
@@ -124,7 +232,6 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication()
 
     myapp = QThreadPractice()
-    # myapp.setWindowFlags(QtCore.Qt.FramelessWindowHint)
     myapp.show()
 
     app.exec_()

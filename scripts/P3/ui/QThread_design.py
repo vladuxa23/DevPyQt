@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'P3_HardwareIndependentIO_QThread_design.ui'
+## Form generated from reading UI file 'QThread_design.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
