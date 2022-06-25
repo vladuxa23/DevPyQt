@@ -297,9 +297,14 @@ class MyApp(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
+        self.initThreads()
         self.initUi()
 
+    def initThreads(self):
+        self.timerThread = TimerThread()
+
     def initUi(self):
+        # ui
         self.lineEditStart = QtWidgets.QLineEdit()
         self.lineEditStart.setPlaceholderText("Введите количество секунд")
 
@@ -315,6 +320,21 @@ class MyApp(QtWidgets.QWidget):
         layout.addWidget(self.pushButtonStop)
 
         self.setLayout(layout)
+
+        # widgets signals
+        self.pushButtonStart.clicked.connect(self.onPushButtonStartClicked)
+
+    # pushButtonStart slots
+    def onPushButtonStartClicked(self):
+        self.timerThread.start()
+
+class TimerThread(QtCore.QThread):
+
+    def run(self):
+        for i in range(10, 0, -1):
+            print(i)
+            time.sleep(1)
+
 
 
 if __name__ == '__main__':
