@@ -305,6 +305,7 @@ class MyApp(QtWidgets.QWidget):
 
         self.timerThread.started.connect(self.timerThreadStarted)
         self.timerThread.finished.connect(self.timerThreadFinished)
+        self.timerThread.timerSignal.connect(self.timerThreadTimerSignal)
 
     def initUi(self):
         # ui
@@ -350,8 +351,12 @@ class MyApp(QtWidgets.QWidget):
         self.lineEditStart.setText("")
         QtWidgets.QMessageBox.about(self, "Успех!", "Отсчёт закончен")
 
+    def timerThreadTimerSignal(self, emit_value):
+        self.lineEditStart.setText(emit_value)
+
 
 class TimerThread(QtCore.QThread):
+    timerSignal = QtCore.Signal(str)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -362,9 +367,9 @@ class TimerThread(QtCore.QThread):
             self.timerCount = 10
 
         for i in range(self.timerCount, 0, -1):
-            print(i)
+            # print(i)
+            self.timerSignal.emit(str(i))
             time.sleep(1)
-
 
 
 if __name__ == '__main__':
