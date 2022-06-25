@@ -410,6 +410,7 @@ class MyApp(QtWidgets.QWidget):
 
         self.pushButtonStop = QtWidgets.QPushButton()
         self.pushButtonStop.setText("Стоп")
+        self.pushButtonStop.setEnabled(False)
 
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(self.lineEditTimer)
@@ -425,6 +426,11 @@ class MyApp(QtWidgets.QWidget):
         # widgets
         self.pushButtonStart.clicked.connect(self.onPushButtonStartClicked)
 
+        # threads
+        self.timerThread.started.connect(self.timerThreadStarted)
+        self.timerThread.finished.connect(self.timerThreadFinished)
+
+    # widget slots
     def onPushButtonStartClicked(self):
         try:
             self.timerThread.timerCount = int(self.lineEditTimer.text())
@@ -433,6 +439,16 @@ class MyApp(QtWidgets.QWidget):
             self.lineEditTimer.setText("")
             QtWidgets.QMessageBox.warning(self, "Ошибка!", "Значение таймера может быть только целочисленным")
 
+    # thread slots
+    def timerThreadStarted(self):
+        self.pushButtonStart.setEnabled(False)
+        self.pushButtonStop.setEnabled(True)
+        self.lineEditTimer.setEnabled(False)
+
+    def timerThreadFinished(self):
+        self.pushButtonStart.setEnabled(True)
+        self.pushButtonStop.setEnabled(False)
+        self.lineEditTimer.setEnabled(True)
 
 class TimerThread(QtCore.QThread):
 
