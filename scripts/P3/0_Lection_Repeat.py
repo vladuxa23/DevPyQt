@@ -426,14 +426,27 @@ class MyApp(QtWidgets.QWidget):
         self.pushButtonStart.clicked.connect(self.onPushButtonStartClicked)
 
     def onPushButtonStartClicked(self):
-        self.timerThread.start()
+        try:
+            self.timerThread.timerCount = int(self.lineEditTimer.text())
+            self.timerThread.start()
+        except ValueError:
+            self.lineEditTimer.setText("")
+            QtWidgets.QMessageBox.warning(self, "Ошибка!", "Значение таймера может быть только целочисленным")
 
 
 class TimerThread(QtCore.QThread):
 
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        self.timerCount = None
+
     def run(self):
 
-        for i in range(10, 0, -1):
+        if self.timerCount is None:
+            self.timerCount = 10
+
+        for i in range(self.timerCount, 0, -1):
             print(i)
             time.sleep(1)
 
