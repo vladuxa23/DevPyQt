@@ -300,6 +300,8 @@ class MyApp(QtWidgets.QWidget):
         self.initUi()
 
     def initUi(self):
+        self.setFixedSize(180, 150)
+
         self.lineEditStart = QtWidgets.QLineEdit()
         self.lineEditStart.setPlaceholderText("Введите количество секунд")
 
@@ -309,10 +311,26 @@ class MyApp(QtWidgets.QWidget):
         self.pushButtonStop = QtWidgets.QPushButton()
         self.pushButtonStop.setText("Стоп")
 
+        # Изменение политик растяжения кнопок
+        # self.pushButtonStart.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
+        #                                    QtWidgets.QSizePolicy.Policy.Expanding)
+        # self.pushButtonStop.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
+        #                                    QtWidgets.QSizePolicy.Policy.Expanding)
+
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(self.lineEditStart)
         layout.addWidget(self.pushButtonStart)
         layout.addWidget(self.pushButtonStop)
+
+        # Добавление Spacer на форму (занимает всё свободное пространство)
+        layout.addSpacerItem(
+            QtWidgets.QSpacerItem(
+                1,
+                1,
+                QtWidgets.QSizePolicy.Policy.Expanding,
+                QtWidgets.QSizePolicy.Policy.Expanding
+            )
+        )
 
         self.setLayout(layout)
 
