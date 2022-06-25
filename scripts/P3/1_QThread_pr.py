@@ -12,6 +12,8 @@ class QThreadPractice(QtWidgets.QWidget):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
 
+        self.ui.push
+
         self.initUi()
 
     def initUi(self):
