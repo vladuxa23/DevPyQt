@@ -393,6 +393,9 @@ class MyApp(QtWidgets.QWidget):
         super().__init__(parent)
 
         self.initUi()
+        self.initThreads()
+
+        self.initSignals()
 
 
     def initUi(self):
@@ -414,6 +417,25 @@ class MyApp(QtWidgets.QWidget):
         layout.addWidget(self.pushButtonStop)
 
         self.setLayout(layout)
+
+    def initThreads(self):
+        self.timerThread = TimerThread()
+
+    def initSignals(self):
+        # widgets
+        self.pushButtonStart.clicked.connect(self.onPushButtonStartClicked)
+
+    def onPushButtonStartClicked(self):
+        self.timerThread.start()
+
+
+class TimerThread(QtCore.QThread):
+
+    def run(self):
+
+        for i in range(10, 0, -1):
+            print(i)
+            time.sleep(1)
 
 
 if __name__ == '__main__':
