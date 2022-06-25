@@ -1,6 +1,7 @@
 import time
 import psutil
 import requests
+from requests.exceptions import MissingSchema
 from PySide2 import QtCore, QtWidgets
 from ui.QThread_design import Ui_Form
 
@@ -30,6 +31,7 @@ class QThreadPractice(QtWidgets.QWidget):
         self.timerThread.finished.connect(self.timerThreadFinished)
 
         self.urlCheckerThread.urlSignal.connect(self.urlCheckerThreadUrlSignal)
+        self.urlCheckerThread.logSignal.connect(self.urlCheckerThreadUrlSignal)
 
         self.systemInfoThread.systemSignal.connect(self.systemInfoThreadSystemSignal)
 
@@ -165,6 +167,7 @@ class TimerThread(QtCore.QThread):
 
 class UrlCheckerThread(QtCore.QThread):
     urlSignal = QtCore.Signal(int)
+    logSignal = QtCore.Signal(str)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -204,9 +207,13 @@ class UrlCheckerThread(QtCore.QThread):
         self.status = True
 
         while self.status:
-            response = requests.get(self.__url)
-            self.urlSignal.emit(response.status_code)
-            time.sleep(self.__delay)
+            try:
+                response = requests.get(self.__url)
+                self.urlSignal.emit(response.status_code)
+                time.sleep(self.__delay)
+            except MissingSchema:
+                self.status = False
+                self.logSignal.emit("URL введён некорректно")
 
 
 class SystemInfoThread(QtCore.QThread):
