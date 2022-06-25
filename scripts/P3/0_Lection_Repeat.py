@@ -347,6 +347,9 @@ class MyApp(QtWidgets.QWidget):
         self.pushButtonStart.setEnabled(True)
         self.pushButtonStop.setEnabled(False)
         self.lineEditStart.setEnabled(True)
+        self.lineEditStart.setText("")
+        QtWidgets.QMessageBox.about(self, "Успех!", "Отсчёт закончен")
+
 
 class TimerThread(QtCore.QThread):
 
