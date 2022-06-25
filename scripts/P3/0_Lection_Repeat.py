@@ -326,12 +326,21 @@ class MyApp(QtWidgets.QWidget):
 
     # pushButtonStart slots
     def onPushButtonStartClicked(self):
+        self.timerThread.timerCount = int(self.lineEditStart.text())
         self.timerThread.start()
+
 
 class TimerThread(QtCore.QThread):
 
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.timerCount = None
+
     def run(self):
-        for i in range(10, 0, -1):
+        if self.timerCount is None:
+            self.timerCount = 10
+
+        for i in range(self.timerCount, 0, -1):
             print(i)
             time.sleep(1)
 
