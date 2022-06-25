@@ -303,6 +303,9 @@ class MyApp(QtWidgets.QWidget):
     def initThreads(self):
         self.timerThread = TimerThread()
 
+        self.timerThread.started.connect(self.timerThreadStarted)
+        self.timerThread.finished.connect(self.timerThreadFinished)
+
     def initUi(self):
         # ui
         self.lineEditStart = QtWidgets.QLineEdit()
@@ -313,6 +316,7 @@ class MyApp(QtWidgets.QWidget):
 
         self.pushButtonStop = QtWidgets.QPushButton()
         self.pushButtonStop.setText("Стоп")
+        self.pushButtonStop.setEnabled(False)
 
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(self.lineEditStart)
@@ -326,9 +330,23 @@ class MyApp(QtWidgets.QWidget):
 
     # pushButtonStart slots
     def onPushButtonStartClicked(self):
-        self.timerThread.timerCount = int(self.lineEditStart.text())
-        self.timerThread.start()
+        try:
+            self.timerThread.timerCount = int(self.lineEditStart.text())
+            self.timerThread.start()
+        except ValueError:
+            self.lineEditStart.setText("")
+            QtWidgets.QMessageBox.warning(self, "Ошибка!", "Таймер поддерживает только целочисленные значения!")
 
+    # thread slots
+    def timerThreadStarted(self):
+        self.pushButtonStart.setEnabled(False)
+        self.pushButtonStop.setEnabled(True)
+        self.lineEditStart.setEnabled(False)
+
+    def timerThreadFinished(self):
+        self.pushButtonStart.setEnabled(True)
+        self.pushButtonStop.setEnabled(False)
+        self.lineEditStart.setEnabled(True)
 
 class TimerThread(QtCore.QThread):
 
