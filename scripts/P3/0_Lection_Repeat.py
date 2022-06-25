@@ -382,6 +382,38 @@
 #             self.timerSignal.emit(str(self.timerCount))
 
 
+# Группа 2021-9/2
+import time
+from PySide2 import QtWidgets, QtCore
+
+
+class MyApp(QtWidgets.QWidget):
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        self.initUi()
+
+
+    def initUi(self):
+        self.setWindowTitle("Таймер")
+        self.setFixedSize(250, 150)
+
+        self.lineEditTimer = QtWidgets.QLineEdit()
+        self.lineEditTimer.setPlaceholderText("Введите количество секунд")
+
+        self.pushButtonStart = QtWidgets.QPushButton()
+        self.pushButtonStart.setText("Старт")
+
+        self.pushButtonStop = QtWidgets.QPushButton()
+        self.pushButtonStop.setText("Стоп")
+
+        layout = QtWidgets.QVBoxLayout()
+        layout.addWidget(self.lineEditTimer)
+        layout.addWidget(self.pushButtonStart)
+        layout.addWidget(self.pushButtonStop)
+
+        self.setLayout(layout)
 
 
 if __name__ == '__main__':
