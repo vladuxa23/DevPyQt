@@ -421,6 +421,7 @@ class MyApp(QtWidgets.QWidget):
 
     def initThreads(self):
         self.timerThread = TimerThread()
+        self.timerThread.start()
 
     def initSignals(self):
         # widgets
