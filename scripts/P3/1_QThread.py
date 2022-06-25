@@ -109,7 +109,10 @@ class QThreadPractice(QtWidgets.QWidget):
         :return: None
         """
 
-        self.ui.plainTextEditUrlCheckLog.appendPlainText(f"{time.ctime()} - Статус {status_code}")
+        if isinstance(status_code, MissingSchema):
+            self.ui.plainTextEditUrlCheckLog.appendPlainText(str(status_code))
+        else:
+            self.ui.plainTextEditUrlCheckLog.appendPlainText(f"{time.ctime()} - Статус {status_code}")
 
     # Слоты для system_info
     def systemInfoThreadSystemSignal(self, info_list) -> None:
@@ -167,7 +170,7 @@ class TimerThread(QtCore.QThread):
 
 class UrlCheckerThread(QtCore.QThread):
     urlSignal = QtCore.Signal(int)
-    logSignal = QtCore.Signal(str)
+    logSignal = QtCore.Signal(Exception)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -211,9 +214,9 @@ class UrlCheckerThread(QtCore.QThread):
                 response = requests.get(self.__url)
                 self.urlSignal.emit(response.status_code)
                 time.sleep(self.__delay)
-            except MissingSchema:
+            except MissingSchema as err:
                 self.status = False
-                self.logSignal.emit("URL введён некорректно")
+                self.logSignal.emit(err)
 
 
 class SystemInfoThread(QtCore.QThread):
