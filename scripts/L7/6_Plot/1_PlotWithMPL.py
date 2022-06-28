@@ -27,8 +27,8 @@ class MainWindow(QtWidgets.QMainWindow):
         super().__init__(*args, **kwargs)
 
         self.initUi()
-        # self.start_timer()
-        self.update_plot()
+        self.start_timer()
+        # self.update_plot()
         self.move(100, 100)
 
     def initUi(self):
@@ -63,24 +63,16 @@ class MainWindow(QtWidgets.QMainWindow):
         # pb_hide.setMaximumSize(22, 22)
         # pb_hide.setMinimumSize(22, 22)
         # pb_hide.clicked.connect(lambda: self.showMinimized())
-
+        #
         # layout_title = QtWidgets.QHBoxLayout()
         # layout_title.addWidget(title, alignment=QtCore.Qt.AlignRight)
         # layout_title.addWidget(pb_hide)
         # layout_title.addWidget(pb_close)
         # layout_title.setAlignment(QtCore.Qt.AlignRight)
         # self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
-
-        layout = QtWidgets.QVBoxLayout()
-        # layout.addLayout(layout_title)
-        layout.addWidget(toolbar)
-        layout.addLayout(paramLayout)
-        layout.addWidget(self.canvas)
-
-        cw = QtWidgets.QFrame()
-        cw.setObjectName('cw')
-        cw.setLayout(layout)
-
+        #
+        #
+        #
         # self.setStyleSheet("""
         # #pb_close {
         #     background-color: #bd93f9;
@@ -118,6 +110,16 @@ class MainWindow(QtWidgets.QMainWindow):
         # }
         # """)
 
+        layout = QtWidgets.QVBoxLayout()
+        # layout.addLayout(layout_title)  # Раскомментировать, если устанавливаем стили
+        layout.addWidget(toolbar)
+        layout.addLayout(paramLayout)
+        layout.addWidget(self.canvas)
+
+        cw = QtWidgets.QFrame()
+        cw.setObjectName('cw')
+        cw.setLayout(layout)
+
         self.setCentralWidget(cw)
 
     def start_timer(self):
@@ -139,6 +141,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
+
     w = MainWindow()
     w.show()
 

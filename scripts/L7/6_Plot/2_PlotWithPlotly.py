@@ -20,6 +20,7 @@ class Widget(QtWidgets.QMainWindow):
         self.canvas = QtWebEngineWidgets.QWebEngineView(self)
 
         label = QtWidgets.QLabel("Max")
+
         self.spinBoxMax = QtWidgets.QSpinBox()
         self.spinBoxMax.setRange(0, 100)
 
@@ -35,14 +36,15 @@ class Widget(QtWidgets.QMainWindow):
 
         widget = QtWidgets.QWidget()
         widget.setLayout(layout)
+
         self.setCentralWidget(widget)
 
         self.spinBoxMax.valueChanged.connect(self.show_graph0)
 
-        # self.button.clicked.connect(self.show_graph0)
+        self.button.clicked.connect(self.show_graph0)
         # self.button.clicked.connect(self.show_graph1)
         # self.button.clicked.connect(self.show_graph2)
-        self.button.clicked.connect(self.show_graph3)
+        # self.button.clicked.connect(self.show_graph3)
         self.resize(1000, 800)
 
     def show_graph0(self):

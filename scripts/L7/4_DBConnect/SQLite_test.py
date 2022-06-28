@@ -1,4 +1,6 @@
 import sys
+import time
+
 import ui.crud_design
 from PySide2 import QtWidgets, QtCore, QtSql, QtGui
 
@@ -24,13 +26,6 @@ class EditableSQLModel(QtSql.QSqlTableModel):
                 if name == "Вася":
                     name = "Василий"
                 return name
-            #
-            # if item.column() == 3:
-            #     try:
-            #         number = QtGui.QStandardItemModel.data(self, item, QtCore.Qt.DisplayRole)
-            #         return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(int(number)))
-            #     except ValueError:
-            #         pass
 
         if role == QtCore.Qt.BackgroundRole:
             if item.row() % 2:
@@ -44,6 +39,7 @@ class EditableSQLModel(QtSql.QSqlTableModel):
         else:
             return QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEditable
 
+
 class Form(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
@@ -52,15 +48,17 @@ class Form(QtWidgets.QMainWindow):
 
         self.initSQLModel()
 
+        self.initSignals()
+
+    def initSignals(self):
         self.ui.pushButtonAdd.clicked.connect(self.onPushButtonAddClicked)
         self.ui.pushButtonDel.clicked.connect(self.onPushButtonDelClicked)
 
     def initSQLModel(self):
-
         self.db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         self.db.setDatabaseName('fieldlist.db')
-        self.model = EditableSQLModel()
-        # self.model = QtSql.QSqlTableModel()
+        # self.model = EditableSQLModel()
+        self.model = QtSql.QSqlTableModel()
         self.model.setTable('field')
 
         self.model.select()

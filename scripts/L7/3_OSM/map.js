@@ -1,6 +1,6 @@
 var map;
 
-function initialize(){
+function initialize() {
     map = L.map('map').setView([59.9, 30.3], 13);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidmxhZHV4YTIzIiwiYSI6ImNrbzA1dHV3cDBjaDIyd210Y2JzdzhrbzYifQ.Py08SB4GNGiV-grb_PvgOw', {
@@ -15,13 +15,13 @@ function initialize(){
     }).addTo(map);
 
     new QWebChannel(qt.webChannelTransport, function (channel) {
-    window.MainWindow = channel.objects.MainWindow;
-    if(typeof MainWindow != 'undefined') {
-        var onMapMove = function() { MainWindow.onMapMove(map.getCenter().lat, map.getCenter().lng) };
-        map.on('move', onMapMove);
-        onMapMove();
-    }
+        window.MainWindow = channel.objects.MainWindow;
+        if (typeof MainWindow != 'undefined') {
+            var onMapMove = function () {
+                MainWindow.onMapMove(map.getCenter().lat, map.getCenter().lng)
+            };
+            map.on('move', onMapMove);
+            onMapMove();
+        }
     });
-
-
 }

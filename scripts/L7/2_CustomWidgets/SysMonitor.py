@@ -10,15 +10,19 @@ class SystemMonitorGUI(QtWidgets.QWidget):
         super(SystemMonitorGUI, self).__init__(parent)
 
         self.initUI()
+        self.initThreads()
 
     def initUI(self):
-        self.setFixedSize(900, 400)
+        self.setFixedSize(1200, 400)
+
         layout = QtWidgets.QHBoxLayout()
 
         for _ in range(psutil.cpu_count()):
             layout.addWidget(CPUWidget(self))
+
         self.setLayout(layout)
 
+    def initThreads(self):
         self.systemMonitor = SystemMonitor()
         self.systemMonitor.start()
         self.systemMonitor.cpuInfo.connect(self.updatePB, QtCore.Qt.QueuedConnection)
@@ -43,7 +47,6 @@ class SystemMonitor(QtCore.QThread):
             self.cpuInfo.emit(psutil.cpu_percent(percpu=True))
 
 
-
 class CPUWidget(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(CPUWidget, self).__init__(parent)
@@ -65,6 +68,8 @@ class CPUWidget(QtWidgets.QWidget):
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication()
+
     win = SystemMonitorGUI()
     win.show()
+
     app.exec_()

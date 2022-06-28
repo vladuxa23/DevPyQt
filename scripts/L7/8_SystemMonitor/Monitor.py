@@ -9,11 +9,17 @@ from ui.circular_pb import Ui_CircularPB
 class SystemMonitorGUI(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(SystemMonitorGUI, self).__init__(parent)
-        self.resize(1000, 200)
 
-        systemInfo = SystemMonitor()
-        systemInfo.start()
-        systemInfo.cpuInfo.connect(self.updatePB, QtCore.Qt.QueuedConnection)
+        self.initUi()
+        self.initThreads()
+
+    def initThreads(self):
+        self.systemInfo = SystemMonitor()
+        self.systemInfo.start()
+        self.systemInfo.cpuInfo.connect(self.updatePB, QtCore.Qt.QueuedConnection)
+
+    def initUi(self):
+        self.resize(1000, 200)
 
         self.layout = QtWidgets.QHBoxLayout()
         for cpu in range(psutil.cpu_count()):
@@ -48,7 +54,7 @@ class CircularPB(QtWidgets.QMainWindow):
 
         # ==> REMOVE STANDARD TITLE BAR
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)  # Remove title bar
-        # self.setAttribute(QtCore.Qt.WA_TranslucentBackground)  # Set background to transparent
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)  # Set background to transparent
 
         # ==> APPLY DROP SHADOW EFFECT
         self.shadow = QtWidgets.QGraphicsDropShadowEffect(self)
@@ -89,6 +95,7 @@ class CircularPB(QtWidgets.QMainWindow):
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    window = SystemMonitorGUI()
+    # window = SystemMonitorGUI()
+    window = CircularPB()
     window.show()
     sys.exit(app.exec_())

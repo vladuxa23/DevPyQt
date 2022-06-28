@@ -28,13 +28,17 @@ class MainWindow(QtWidgets.QWidget):
 
         # widgetLeftPanel
         self.labelCoords = QtWidgets.QLabel()
+
         self.view = QtWebEngineWidgets.QWebEngineView()
 
         # widgetRightPanel
         labelCheckIP = QtWidgets.QLabel("Проверить IP")
+
         self.lineEditCheckIP = QtWidgets.QLineEdit()
         self.lineEditCheckIP.setPlaceholderText("Введите IP для проверки")
+
         self.pushButtonCheckIP = QtWidgets.QPushButton("Проверить")
+        self.pushButtonCheckIP.clicked.connect(self.getIPInfo)
 
         layoutLeftPanel.addWidget(self.labelCoords)
         layoutLeftPanel.addWidget(self.view)
@@ -53,8 +57,6 @@ class MainWindow(QtWidgets.QWidget):
         layoutMain.addWidget(splitterMain)
 
         self.setLayout(layoutMain)
-
-        self.pushButtonCheckIP.clicked.connect(self.getIPInfo)
 
     def initMap(self):
         file = os.path.join(os.path.dirname(os.path.realpath(__file__)), "map.html", )

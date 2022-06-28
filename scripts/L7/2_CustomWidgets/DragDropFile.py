@@ -5,22 +5,20 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
 
+        self.initUi()
+        self.updateLabels()
+
+    def initUi(self):
+        # main window
         self.setWindowTitle('Drag & Drop')
         self.setGeometry(500, 100, 500, 400)
+        self.setAcceptDrops(True) # Даем разрешение на Drop
 
-        # Даем разрешение на Drop
-        self.setAcceptDrops(True)
-
+        # создаём Ui
         self.list_files = QtWidgets.QListWidget()
         self.label_total_files = QtWidgets.QLabel()
 
-        model = QtWidgets.QFileSystemModel()
-        model.setRootPath(QtCore.QDir.currentPath())
-        model.setReadOnly(False)
-
         self.tree = QtWidgets.QTreeView()
-        self.tree.setModel(model)
-        self.tree.setRootIndex(model.index(QtCore.QDir.currentPath()))
         self.tree.setSelectionMode(QtWidgets.QTreeView.SingleSelection)
         self.tree.setDragDropMode(QtWidgets.QTreeView.InternalMove)
 
@@ -35,9 +33,15 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.setCentralWidget(central_widget)
 
-        self._update_states()
+        # init models
+        model = QtWidgets.QFileSystemModel()
+        model.setRootPath(QtCore.QDir.currentPath())
+        model.setReadOnly(False)
 
-    def _update_states(self):
+        self.tree.setModel(model)
+        self.tree.setRootIndex(model.index(QtCore.QDir.currentPath()))
+
+    def updateLabels(self):
         self.label_total_files.setText('Files: {}'.format(self.list_files.count()))
 
     def dragEnterEvent(self, event):
@@ -56,15 +60,15 @@ class MainWindow(QtWidgets.QMainWindow):
             file_name = url.toLocalFile()
             self.list_files.addItem(file_name)
 
-        self._update_states()
+        self.updateLabels()
 
         return super().dropEvent(event)
 
 
 if __name__ == '__main__':
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
+    app = QtWidgets.QApplication()
 
     w = MainWindow()
     w.show()
-    sys.exit(app.exec_())
+
+    app.exec_()

@@ -21,6 +21,7 @@ class MyStandardItemModel(QtGui.QStandardItemModel):
         :param role: роль элемента в модели
         :return:
         """
+
         # отбор отображаемых элементов
         if role == QtCore.Qt.DisplayRole:
             # по колонке определяем то как отображать данные
@@ -188,6 +189,7 @@ class ComboBoxDelegate(QtWidgets.QStyledItemDelegate):
         :param index:
         :return:
         """
+
         model.setData(index, editor.currentText(), QtCore.Qt.EditRole)
 
     def updateEditorGeometry(self, editor, option, index):
@@ -224,12 +226,14 @@ class MyDelegateWindow(QtWidgets.QWidget):
 
         self.tableView = QtWidgets.QTableView()
         self.tableView.resizeColumnsToContents()
+
         self.comboBox = ComboboxWithCheckBox()
         self.comboBox.addItem("Один")
         self.comboBox.addItem("Два")
         self.comboBox.addItem("Три")
 
         self.pb = QtWidgets.QPushButton("...")
+        self.pb.clicked.connect(self.onPBClicked)
 
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(self.tableView)
@@ -238,10 +242,12 @@ class MyDelegateWindow(QtWidgets.QWidget):
 
         self.setLayout(layout)
 
-        self.pb.clicked.connect(self.onPBClicked)
+        # init delegates
         self.doubleDelegate = DoubleDelegate()
+
         self.openDelegate = PushButtonDelegate()
         self.openDelegate.clicked.connect(self.getDataFromRow)
+
         self.comboBoxDelegate = ComboBoxDelegate()
         self.comboBoxDelegate.setItems(['1', '2', '3'])
 
@@ -249,9 +255,7 @@ class MyDelegateWindow(QtWidgets.QWidget):
 
         row = push_row.row()
         column = push_row.column()
-
-        # print(self.tableView.model().data(QtCore.QModelIndex() ,0))
-
+        print(row, column)
 
     def onPBClicked(self):
         print(self.comboBox.checkItems())
@@ -259,8 +263,8 @@ class MyDelegateWindow(QtWidgets.QWidget):
     def loadTable(self):
         headers = ["Путь", "Число", "Размер", "Время"]
 
-        # stm = QtGui.QStandardItemModel()
-        stm = MyStandardItemModel()
+        stm = QtGui.QStandardItemModel()
+        # stm = MyStandardItemModel()
         stm.setHorizontalHeaderLabels(headers)
 
         data = [x for x in os.listdir()]

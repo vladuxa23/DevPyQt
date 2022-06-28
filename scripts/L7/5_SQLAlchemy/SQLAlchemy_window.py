@@ -7,24 +7,25 @@ class ModelPreview(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(ModelPreview, self).__init__(parent)
 
-        layout_main = QtWidgets.QVBoxLayout()
+        self.initUi()
+        self.loadUsers()
 
+    def initUi(self):
         pb = QtWidgets.QPushButton("Add user")
-        pb.clicked.connect(self.addNewUser)
 
         self.list_view_person = QtWidgets.QListView()
-        self.list_view_person.clicked.connect(self.getUserInfo)
 
         self.plain_text_edit_log = QtWidgets.QPlainTextEdit()
 
+        layout_main = QtWidgets.QVBoxLayout()
         layout_main.addWidget(pb)
         layout_main.addWidget(self.list_view_person)
         layout_main.addWidget(self.plain_text_edit_log)
 
-
         self.setLayout(layout_main)
 
-        self.loadUsers()
+        pb.clicked.connect(self.addNewUser)
+        self.list_view_person.clicked.connect(self.getUserInfo)
 
     def loadUsers(self):
         result = []
@@ -57,13 +58,6 @@ class ModelPreview(QtWidgets.QWidget):
                                     f"E-Mail:               {user.get('email')}\n"
                                     f"Телефон:         {user.get('phone')}\n"
                                     f"Дата рег.:       {user.get('register_time').isoformat()}\n")
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":

@@ -15,6 +15,9 @@ class Form(QtWidgets.QMainWindow):
 
         self.initSQLModel()
 
+        self.initSignals()
+
+    def initSignals(self):
         self.ui.pushButtonAdd.clicked.connect(self.onPushButtonAddClicked)
         self.ui.pushButtonDel.clicked.connect(self.onPushButtonDelClicked)
 
