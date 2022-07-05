@@ -1,0 +1,36 @@
+<RCC>
+  <qresource prefix="ico">
+    <file>ico/3d-coat.ico</file>
+    <file>ico/action.ico</file>
+    <file>ico/aimware.ico</file>
+    <file>ico/android-studio.ico</file>
+    <file>ico/anydesc.ico</file>
+    <file>ico/atom-browser.ico</file>
+    <file>ico/atom-nightly.ico</file>
+    <file>ico/axialis-cursorworkshop.ico</file>
+    <file>ico/axialis-icongenerator.ico</file>
+    <file>ico/axialis-iconworkshop.ico</file>
+    <file>ico/axialis-screensaver-producer.ico</file>
+    <file>ico/bandicam.ico</file>
+    <file>ico/battlenet.ico</file>
+    <file>ico/beamng-drive.ico</file>
+    <file>ico/bethesta-launcher.ico</file>
+    <file>ico/bitdefender.ico</file>
+    <file>ico/blackmagic-davinci-resolve.ico</file>
+    <file>ico/blackmagic-fusion-studio.ico</file>
+    <file>ico/blender.ico</file>
+    <file>ico/blend-for-visual-studio.ico</file>
+    <file>ico/brackets.ico</file>
+    <file>ico/cinema-4d.ico</file>
+    <file>ico/console.ico</file>
+    <file>ico/console-v01d.ico</file>
+    <file>ico/cyberghost.ico</file>
+    <file>ico/dropbox.ico</file>
+    <file>ico/eclipse.ico</file>
+    <file>ico/python.ico</file>
+  </qresource>
+  <qresource prefix="img">
+    <file>img/1.jpg</file>
+    <file>img/2.jpg</file>
+  </qresource>
+</RCC>
