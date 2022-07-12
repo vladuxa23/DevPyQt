@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="ico">
+    <file>ico/atom-browser.ico</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,6 @@
+SERV = ""
+CON_DRV = ""
+USER_LOGIN = ""
+USR_PASS = ""
+CON_DATABASE = ""
+CON_PORT = 0

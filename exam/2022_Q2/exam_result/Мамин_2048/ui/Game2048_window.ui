@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>450</width>
+    <height>515</height>
+   </rect>
+  </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string>Play Game 2048</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>451</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <family>Sitka Text</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>WaitCursor</cursorShape>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="toolTipDuration">
+        <number>-1</number>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="text">
+        <string>time</string>
+       </property>
+       <property name="margin">
+        <number>6</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="font">
+        <font>
+         <family>Sitka Text</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);
+</string>
+       </property>
+       <property name="text">
+        <string>Game 2048</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <family>Sitka Text</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>points</string>
+       </property>
+       <property name="margin">
+        <number>5</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>450</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Параметры</string>
+    </property>
+    <widget class="QMenu" name="menu_2">
+     <property name="title">
+      <string>Кол-во клеток</string>
+     </property>
+     <addaction name="separator"/>
+     <addaction name="action3_3"/>
+     <addaction name="action4_4"/>
+     <addaction name="action5_5"/>
+    </widget>
+    <addaction name="menu_2"/>
+    <addaction name="action_reset_record"/>
+    <addaction name="action"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <action name="action3_3">
+   <property name="text">
+    <string>Поле 3 х 3</string>
+   </property>
+   <property name="iconText">
+    <string>Поле 3 х 3</string>
+   </property>
+   <property name="toolTip">
+    <string>Поле 3 х 3</string>
+   </property>
+  </action>
+  <action name="action4_4">
+   <property name="text">
+    <string>Поле 4 х 4</string>
+   </property>
+   <property name="iconText">
+    <string>Поле 4 х 4</string>
+   </property>
+   <property name="toolTip">
+    <string>Поле 4 х 4</string>
+   </property>
+  </action>
+  <action name="action5_5">
+   <property name="text">
+    <string>Поле 5 х 5</string>
+   </property>
+   <property name="iconText">
+    <string>Поле 5 х 5</string>
+   </property>
+   <property name="toolTip">
+    <string>Поле 5 х 5</string>
+   </property>
+  </action>
+  <action name="action6_6">
+   <property name="text">
+    <string>6 х 6</string>
+   </property>
+  </action>
+  <action name="action7_7">
+   <property name="text">
+    <string>7 х 7</string>
+   </property>
+  </action>
+  <action name="action8_8">
+   <property name="text">
+    <string>8 х 8</string>
+   </property>
+  </action>
+  <action name="action_reset_record">
+   <property name="text">
+    <string>Обнулить рекорд</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>Начать заново</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

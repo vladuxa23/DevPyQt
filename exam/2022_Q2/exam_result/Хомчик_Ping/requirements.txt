@@ -1,0 +1,3 @@
+PySide2==5.15.2.1
+shiboken2==5.15.2.1
+Random-Word==1.0.7
