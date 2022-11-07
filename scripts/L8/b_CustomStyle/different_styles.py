@@ -3,6 +3,7 @@ import random
 from PySide2 import QtWidgets, QtCore
 from ui.forms.P1_QtWidgetsAndWindows_AddUi_design import Ui_MainWindow
 
+# https://doc.qt.io/qtforpython/overviews/stylesheet-examples.html
 
 class MyMainWindow(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
@@ -44,8 +45,8 @@ class MyMainWindow(QtWidgets.QMainWindow):
         #     self.setStyleSheet(f.read())
 
         # 7
-        with open('./ui/themes/Qdarkstyle.qss', 'r') as f:
-            self.setStyleSheet(f.read())
+        # with open('./ui/themes/Qdarkstyle.qss', 'r') as f:
+        #     self.setStyleSheet(f.read())
 
 
 if __name__ == "__main__":

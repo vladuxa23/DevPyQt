@@ -35,9 +35,11 @@ class MyModelsPreview(QtWidgets.QMainWindow):
         self.tableView = QtWidgets.QTableView()
         self.tableView.setModel(self.createQStandardItemModel())
         self.tableView.resizeColumnsToContents()  # Нежелательно делать для большого количества данных
+        self.tableView.selectionModel().currentChanged.connect(self.itemSelectionChanged)
 
         self.treeView = QtWidgets.QTreeView()
         self.treeView.setModel(self.createQStandardItemModel())
+
         # self.treeView.setModel(self.createTreeModel())
 
         self.columnView = QtWidgets.QColumnView()
@@ -56,6 +58,12 @@ class MyModelsPreview(QtWidgets.QMainWindow):
 
         centralWidget.setLayout(layoutV1)
 
+    def itemSelectionChanged(self, item: QtCore.QModelIndex):
+        print(item.row())
+        print(item.column())
+
+        print(item.data(0))
+
     def createQStringListModel(self):
         lst = self.rndWords.get_random_words()[:]
         # lst = self.rndWords
@@ -71,7 +79,35 @@ class MyModelsPreview(QtWidgets.QMainWindow):
             sim.appendRow([item1, item2])
         sim.setHorizontalHeaderLabels(["№ п/п", "Слово"])
 
+        sim.dataChanged.connect(self.tableViewDataChanged)
+
+
+
         return sim
+
+    def tableViewDataChanged(self, item):
+        model = self.tableView.model()
+        id_ = model.index(item.row(), 0)
+        print()
+        print()
+        print()
+        print()
+        print(item.row())
+        print(item.column())
+
+        print()
+        print(id_.data(0))
+        print(item.data(0))
+
+        if item.column() == 1:
+            pass
+            # do query_1
+        elif item.column() == 2:
+            pass
+            # do query_2
+        # back for db
+
+
 
     def createTreeModel(self):
         sim = QtGui.QStandardItemModel()

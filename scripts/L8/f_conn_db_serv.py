@@ -22,9 +22,6 @@ class MyFirstWindow(QtWidgets.QWidget):  # Наследуемся от QMainWind
         self.resize(1000, 600)
 
         self.tableView = QtWidgets.QTableView()
-        # self.tableView.setMouseTracking(True)
-        # self.tableView.entered.connect(self.on_entered)
-
 
         self.listView = QtWidgets.QListView()
 
@@ -33,10 +30,6 @@ class MyFirstWindow(QtWidgets.QWidget):  # Наследуемся от QMainWind
         l.addWidget(self.listView)
 
         self.setLayout(l)
-
-    # def on_entered(self, index):
-    #     print(index.row(), index.column())
-    #     print(index.data(0))
 
     def initTableViewModel(self):
         sim = QtGui.QStandardItemModel()
@@ -55,14 +48,10 @@ class MyFirstWindow(QtWidgets.QWidget):  # Наследуемся от QMainWind
 
         sim.dataChanged.connect(lambda x: print(x))
 
-
-
         self.tableView.setModel(sim)
 
         self.tableView.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.tableView.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
-
-
 
     def initListViewModel(self):
 
