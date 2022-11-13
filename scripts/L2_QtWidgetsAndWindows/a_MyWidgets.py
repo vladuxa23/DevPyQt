@@ -1,6 +1,7 @@
 import sys
 from PySide2 import QtWidgets, QtCore
 
+
 class MyWidgets(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
@@ -11,8 +12,6 @@ class MyWidgets(QtWidgets.QWidget):
 
         self.setMinimumSize(QtCore.QSize(200, 200))
         self.setMaximumSize(QtCore.QSize(200, 200))
-
-
 
         # self.initUi()
 
@@ -25,21 +24,21 @@ class MyWidgets(QtWidgets.QWidget):
     # def initUi(self):
     #     layout = QtWidgets.QVBoxLayout()
 
-        # self.pushButton = QtWidgets.QPushButton("Кнопка")
-        # self.radioButton = QtWidgets.QRadioButton("some text")
-        # self.checkBox = QtWidgets.QCheckBox("check box")
-        # self.radioButton.setChecked(True)
-        # self.combo = QtWidgets.QComboBox()
-        # self.combo.addItems(["abc", "bca"])
+    # self.pushButton = QtWidgets.QPushButton("Кнопка")
+    # self.radioButton = QtWidgets.QRadioButton("some text")
+    # self.checkBox = QtWidgets.QCheckBox("check box")
+    # self.radioButton.setChecked(True)
+    # self.combo = QtWidgets.QComboBox()
+    # self.combo.addItems(["abc", "bca"])
 
-        # self.slider = QtWidgets.QSlider()
-        # self.slider.setOrientation(QtCore.Qt.Vertical)
+    # self.slider = QtWidgets.QSlider()
+    # self.slider.setOrientation(QtCore.Qt.Vertical)
 
-        # layout.addWidget(self.pushButton)
-        # layout.addWidget(self.radioButton)
-        # layout.addWidget(self.combo)
-        # layout.addWidget(self.slider)
-        # self.setLayout(layout)
+    # layout.addWidget(self.pushButton)
+    # layout.addWidget(self.radioButton)
+    # layout.addWidget(self.combo)
+    # layout.addWidget(self.slider)
+    # self.setLayout(layout)
 
 
 if __name__ == "__main__":

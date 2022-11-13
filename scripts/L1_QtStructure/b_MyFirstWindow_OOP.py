@@ -2,7 +2,7 @@ import sys
 from PySide2 import QtWidgets  # Импорт класса, который содержит элементы окна
 
 
-class MyFirstWindow(QtWidgets.QWidget):  # Наследуемся от QMainWindow
+class MyFirstWindow(QtWidgets.QWidget):  # Наследуемся от QWidget
 
     def __init__(self, parent=None):  # Создаем конструктор класса
         super().__init__(parent)  # Передаем конструктору ссылку на родительский компонент
@@ -10,7 +10,6 @@ class MyFirstWindow(QtWidgets.QWidget):  # Наследуемся от QMainWind
         self.initUi()
 
     def initUi(self):
-
         main_layout = QtWidgets.QVBoxLayout()
 
         btn = QtWidgets.QPushButton("Кнопка")
@@ -24,10 +23,8 @@ class MyFirstWindow(QtWidgets.QWidget):  # Наследуемся от QMainWind
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication()  # Создаем  объект приложения
-    # app = QtWidgets.QApplication(sys.argv)  # Если PyQt
 
     myWindow = MyFirstWindow()  # Создаём объект окна
     myWindow.show()  # Показываем окно
 
-    sys.exit(app.exec_())  # Если exit, то код дальше не исполняется
-
+    sys.exit(app.exec_())  # Запускает бесконечный цикл выполнения приложения
