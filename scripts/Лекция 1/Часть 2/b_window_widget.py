@@ -1,16 +1,17 @@
-import sys
-from PySide2 import QtWidgets, QtGui
+"""
+Создание окна на основе QWidget
+"""
+
+from PySide6 import QtWidgets
 
 
-class MyWidgets(QtWidgets.QWidget):
-
-    def __init__(self, parent=None):
+class Window(QtWidgets.QWidget):
+    def __init__(self, parent=None) -> None:
         super().__init__(parent)
 
+        # Настройка компоновки окна
         abc = QtWidgets.QPushButton("Текст кнопки")
-
         checkbox = QtWidgets.QCheckBox("Флажок")
-        checkbox.setChecked(True)
 
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(abc)
@@ -20,9 +21,9 @@ class MyWidgets(QtWidgets.QWidget):
 
 
 if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
+    app = QtWidgets.QApplication()
 
-    myWindow = MyWidgets()
+    myWindow = Window()
     myWindow.show()
 
     app.exec_()

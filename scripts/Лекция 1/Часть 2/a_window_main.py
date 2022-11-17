@@ -1,10 +1,12 @@
-import sys
-from PySide2 import QtWidgets, QtGui
+"""
+Создание окна на основе QMainWindow
+"""
+
+from PySide6 import QtWidgets
 
 
-class MyWidgets(QtWidgets.QMainWindow):
-
-    def __init__(self, parent=None):
+class Window(QtWidgets.QMainWindow):
+    def __init__(self, parent=None) -> None:
         super().__init__(parent)
 
         # menuBar отсутствует у QWidgets
@@ -23,21 +25,25 @@ class MyWidgets(QtWidgets.QMainWindow):
         self.appStatusBar = self.statusBar()
         self.appStatusBar.showMessage("Status: Ok!")
 
-        centralWidget = QtWidgets.QWidget()
-        self.setCentralWidget(centralWidget)
-
+        # Настройка компоновки окна
         layout = QtWidgets.QHBoxLayout()
+
         self.abc = QtWidgets.QPushButton("abc")
+        # Настройка "растяжения" кнопки
         self.abc.setSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+
+        layout.addWidget(QtWidgets.QLabel("Надпись"))
         layout.addWidget(self.abc)
 
+        # Центральный виджет особенность QMainWindow
+        centralWidget = QtWidgets.QWidget()
         centralWidget.setLayout(layout)
-
+        self.setCentralWidget(centralWidget)
 
 if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
+    app = QtWidgets.QApplication()
 
-    myWindow = MyWidgets()
+    myWindow = Window()
     myWindow.show()
 
     app.exec_()

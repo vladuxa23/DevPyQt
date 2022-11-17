@@ -1,6 +1,6 @@
 import random
 
-from PySide2 import QtWidgets, QtCore
+from PySide6 import QtWidgets, QtCore
 from ui.P1_QtWidgetsAndWindows_AddUi_design import Ui_MainWindow
 
 
