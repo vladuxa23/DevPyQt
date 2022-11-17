@@ -33,7 +33,7 @@ class MyFirstWindow(QtWidgets.QWidget):  # Наследование от QWidget
 if __name__ == "__main__":
     app = QtWidgets.QApplication()  # Создание объекта приложения
 
-    myWindow = MyFirstWindow()  # Создание объекта окна
-    myWindow.show()  # Показ окна
+    window = MyFirstWindow()  # Создание объекта окна
+    window.show()  # Показ окна
 
     app.exec()  # Забуск бесконечного цикла приложения (событий)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'P1_QtWidgetsAndWindows_AddUi_design.ui'
+## Form generated from reading UI file 'a_add_ui_form.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##

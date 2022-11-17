@@ -30,7 +30,7 @@ class AddWidgets(QtWidgets.QWidget):
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
 
-    myWindow = AddWidgets()
-    myWindow.show()
+    window = AddWidgets()
+    window.show()
 
     app.exec_()

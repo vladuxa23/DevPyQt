@@ -44,7 +44,7 @@ class Window(QtWidgets.QMainWindow):
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
 
-    myWindow = Window()
-    myWindow.show()
+    window = Window()
+    window.show()
 
     app.exec_()
