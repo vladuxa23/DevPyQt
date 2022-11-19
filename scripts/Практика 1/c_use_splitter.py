@@ -32,7 +32,7 @@ class Window(QtWidgets.QWidget):
         splitter.addWidget(textEdit_2)
         splitter.addWidget(textEdit_3)
 
-        # splitter.setCollapsible(0, False)  # Отключение "схлопывания" элементов
+        splitter.setCollapsible(0, False)  # Отключение "схлопывания" элементов
 
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(splitter)
@@ -45,4 +45,4 @@ if __name__ == "__main__":
     window = Window()
     window.show()
 
-    app.exec_()
+    app.exec()

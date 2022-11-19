@@ -3,8 +3,7 @@ import sys
 from PySide2 import QtCore, QtWidgets, QtGui
 from functools import partial
 
-def print_something():
-    print("Ссылка на функцию")
+
 
 
 class MySignalsExample(QtWidgets.QWidget):

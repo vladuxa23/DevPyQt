@@ -2,10 +2,7 @@
 Подключение формы созданной в дизайнере
 
 Команда для конвертации формы:
-```
 PySide6-uic path_to_form.ui -o path_to_form.py
-```
-
 """
 
 from PySide6 import QtWidgets

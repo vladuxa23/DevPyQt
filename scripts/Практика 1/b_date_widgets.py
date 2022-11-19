@@ -6,7 +6,6 @@ from PySide6 import QtCore, QtWidgets
 
 
 class Window(QtWidgets.QWidget):
-
     def __init__(self, parent=None):
         super().__init__(parent)
 
