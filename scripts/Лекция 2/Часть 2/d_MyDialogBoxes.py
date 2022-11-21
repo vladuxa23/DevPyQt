@@ -2,6 +2,7 @@ from PySide2 import QtCore, QtWidgets, QtGui
 from ui import MyDialogBoxes_design
 import time
 
+# TODO комбобокс с типом окна и одной кнопкой
 
 class MessageBoxes(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
