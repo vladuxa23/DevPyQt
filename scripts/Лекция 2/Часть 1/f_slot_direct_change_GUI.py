@@ -1,18 +1,8 @@
 """
-Подключение сигнала к функции
+Подключение сигнала к методу изменения состояния GUI
 """
 
 from PySide6 import QtWidgets
-
-
-def print_something() -> None:
-    """
-    Функция вывода на печать
-
-    :return: None
-    """
-
-    print("Функция выполнена")
 
 
 class Window(QtWidgets.QWidget):
@@ -29,10 +19,10 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        self.pushButton = QtWidgets.QPushButton("Выполнить функцию")
+        self.lineEdit = QtWidgets.QLineEdit()
 
         layout = QtWidgets.QVBoxLayout()
-        layout.addWidget(self.pushButton)
+        layout.addWidget(self.lineEdit)
 
         self.setLayout(layout)
 
@@ -43,7 +33,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        self.pushButton.clicked.connect(print_something)
+        self.lineEdit.textChanged.connect(self.setWindowTitle)
 
 
 if __name__ == "__main__":

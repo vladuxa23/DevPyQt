@@ -1,18 +1,9 @@
 """
-Подключение сигнала к функции
+Подключение сигнала к методу другого класса
 """
 
 from PySide6 import QtWidgets
-
-
-def print_something() -> None:
-    """
-    Функция вывода на печать
-
-    :return: None
-    """
-
-    print("Функция выполнена")
+from PySide6.QtCore import Slot
 
 
 class Window(QtWidgets.QWidget):
@@ -30,6 +21,7 @@ class Window(QtWidgets.QWidget):
         """
 
         self.pushButton = QtWidgets.QPushButton("Выполнить функцию")
+        self.pushButton.setCheckable(True)
 
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(self.pushButton)
@@ -43,7 +35,13 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        self.pushButton.clicked.connect(print_something)
+        self.pushButton.clicked.connect(Test.some_function)
+
+
+class Test:
+    @Slot()
+    def some_function(self):
+        print("Метод другого класса")
 
 
 if __name__ == "__main__":

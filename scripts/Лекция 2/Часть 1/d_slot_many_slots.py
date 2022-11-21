@@ -1,18 +1,8 @@
 """
-Подключение сигнала к функции
+Подключение одного сигнала к нескольким слотам
 """
 
 from PySide6 import QtWidgets
-
-
-def print_something() -> None:
-    """
-    Функция вывода на печать
-
-    :return: None
-    """
-
-    print("Функция выполнена")
 
 
 class Window(QtWidgets.QWidget):
@@ -30,6 +20,7 @@ class Window(QtWidgets.QWidget):
         """
 
         self.pushButton = QtWidgets.QPushButton("Выполнить функцию")
+        self.pushButton.setCheckable(True)
 
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(self.pushButton)
@@ -43,7 +34,19 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        self.pushButton.clicked.connect(print_something)
+        self.pushButton.clicked.connect(lambda x: print(x))
+        self.pushButton.clicked.connect(self.onPushButtonClicked)
+
+    def onPushButtonClicked(self, checked) -> None:
+        """
+        Действие при нажатии на кнопку
+
+        :param checked: состояние кнопки
+        :return: None
+        """
+
+        print(self.pushButton.isChecked())  # + можно получить состояние с помощью метода
+        print("Статус кнопки", checked)
 
 
 if __name__ == "__main__":

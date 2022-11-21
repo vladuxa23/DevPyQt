@@ -1,18 +1,8 @@
 """
-Подключение сигнала к функции
+Подключение сигнала к анонимной функции
 """
 
 from PySide6 import QtWidgets
-
-
-def print_something() -> None:
-    """
-    Функция вывода на печать
-
-    :return: None
-    """
-
-    print("Функция выполнена")
 
 
 class Window(QtWidgets.QWidget):
@@ -43,7 +33,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        self.pushButton.clicked.connect(print_something)
+        self.pushButton.clicked.connect(lambda: print("Выполняю lambda функцию"))
 
 
 if __name__ == "__main__":
