@@ -1,4 +1,4 @@
-from PySide2 import QtCore, QtWidgets, QtGui
+from PySide6 import QtCore, QtWidgets, QtGui
 
 
 class MyEventHandler(QtWidgets.QWidget):
@@ -35,8 +35,18 @@ class MyEventHandler(QtWidgets.QWidget):
     # def wheelEvent(self, event:QtGui.QWheelEvent) -> None:
     #     print(event.angleDelta())
 
-    # def event(self, event: QtCore.QEvent) -> bool:
-    #     print(event.type())
+    def event(self, event: QtCore.QEvent) -> bool:
+        # print(event.type())
+        # print("event")
+
+        return super(MyEventHandler, self).event(event)
+
+    def closeEvent(self, event: QtGui.QCloseEvent) -> None:
+        print("1234")
+
+    def keyPressEvent(self, event: QtGui.QKeyEvent) -> None:
+        print(4321)
+
     #
     #     if event.type() == QtCore.QEvent.Type.Wheel:
     #         print(event.angleDelta())
@@ -57,25 +67,24 @@ class MyEventHandler(QtWidgets.QWidget):
     # def mouseDoubleClickEvent(self, event: QtGui.QMouseEvent) -> None:
     #     print(event.type())
 
-    def eventFilter(self, watched: QtCore.QObject, event: QtCore.QEvent) -> bool:
-
-        # print(watched)
-
-        if watched == self.button2 and event.type() == QtCore.QEvent.KeyPress:
-            print(f"key {event.text()} pressed")
-        if watched == self.button2 and event.type() == QtCore.QEvent.MouseButtonPress:
-            print("mouse pressed")
-        if ((watched == self.button2) or (watched == self.button1)) and event.type() == QtCore.QEvent.MouseButtonDblClick:
-            print("mouse dbl pressed")
-            self.hello(watched)
-
-        return super(MyEventHandler, self).eventFilter(watched, event)
-
-    def hello(self, watched):
-
-        self.le.setText(f"Hello {watched.text()}")
-
-
+    # def eventFilter(self, watched: QtCore.QObject, event: QtCore.QEvent) -> bool:
+    #
+    #     # print(watched)
+    #
+    #     if watched == self.button2 and event.type() == QtCore.QEvent.KeyPress:
+    #         print(f"key {event.text()} pressed")
+    #     if watched == self.button2 and event.type() == QtCore.QEvent.MouseButtonPress:
+    #         print("mouse pressed")
+    #     if ((watched == self.button2) or (
+    #             watched == self.button1)) and event.type() == QtCore.QEvent.MouseButtonDblClick:
+    #         print("mouse dbl pressed")
+    #         self.hello(watched)
+    #
+    #     return super(MyEventHandler, self).eventFilter(watched, event)
+    #
+    # def hello(self, watched):
+    #
+    #     self.le.setText(f"Hello {watched.text()}")
 
 
 if __name__ == "__main__":
