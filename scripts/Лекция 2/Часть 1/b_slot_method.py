@@ -78,7 +78,6 @@ class Window(QtWidgets.QWidget):
         """
         Разность двух чисел
 
-
         :return: None
         """
 

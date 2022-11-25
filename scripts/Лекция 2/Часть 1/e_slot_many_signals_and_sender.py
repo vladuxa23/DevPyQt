@@ -58,4 +58,4 @@ if __name__ == "__main__":
     myapp = Window()
     myapp.show()
 
-    app.exec_()
+    app.exec()

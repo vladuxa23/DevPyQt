@@ -356,6 +356,7 @@ class Window(QtWidgets.QWidget):
         """
 
         color = QtWidgets.QColorDialog.getColor(parent=self, title="Выбор цвета")
+        print(color)
         self.plainTextEdit.clear()
         self.plainTextEdit.appendPlainText(f"HSL:   {str(color.toHsl())}")
         self.plainTextEdit.appendPlainText(f"HSV:   {str(color.toHsv())}")
@@ -371,7 +372,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        ok, font = QtWidgets.QFontDialog.getFont(parent=self, title="Выбор шрифта")
+        ok, font = QtWidgets.QFontDialog.getFont(parent=self)
         if ok:
             self.plainTextEdit.clear()
             self.plainTextEdit.appendPlainText(f"Шрифт:        {str(font.family())}")
