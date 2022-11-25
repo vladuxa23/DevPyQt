@@ -1,4 +1,6 @@
-import sys
+"""
+Перехват и обработка событий мыши
+"""
 
 from PySide6 import QtWidgets, QtGui, QtCore
 
@@ -28,20 +30,48 @@ class Window(QtWidgets.QWidget):
         self.setLayout(layout)
 
     def mouseMoveEvent(self, event: QtGui.QMouseEvent) -> None:
+        """
+        Обработка событий движения мыши
+
+        :param event: QtGui.QMouseEvent
+        :return: None
+        """
+
         self.label.setText("mouseMoveEvent")
 
     def mousePressEvent(self, event: QtGui.QMouseEvent) -> None:
+        """
+        Обработка событий нажатия мыши
+
+        :param event: QtGui.QMouseEvent
+        :return: None
+        """
+
         self.label.setText("mousePressEvent")
 
     def mouseReleaseEvent(self, event: QtGui.QMouseEvent) -> None:
+        """
+        Обработка событий отпускания мыши
+
+        :param event: QtGui.QMouseEvent
+        :return: None
+        """
+
         self.label.setText("mouseReleaseEvent")
 
     def mouseDoubleClickEvent(self, event: QtGui.QMouseEvent) -> None:
+        """
+        Обработка событий двойного нажатия мыши
+
+        :param event: QtGui.QMouseEvent
+        :return: None
+        """
+
         self.label.setText("mouseDoubleClickEvent")
 
 
 if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
+    app = QtWidgets.QApplication()
 
     window = Window()
     window.show()

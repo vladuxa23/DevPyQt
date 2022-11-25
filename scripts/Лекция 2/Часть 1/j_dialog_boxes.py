@@ -1,6 +1,10 @@
+"""
+Использование диалоговых окон
+"""
+
 import time
 
-from PySide2 import QtWidgets
+from PySide6 import QtWidgets
 
 
 class Window(QtWidgets.QWidget):
