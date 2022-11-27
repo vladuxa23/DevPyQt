@@ -20,7 +20,7 @@ class Window(QtWidgets.QWidget):
         """
 
         self.setFixedSize(300, 100)
-        # self.setMouseTracking(True)
+        self.setMouseTracking(True)
 
         self.label = QtWidgets.QLabel("Нажми на меня")
         self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)

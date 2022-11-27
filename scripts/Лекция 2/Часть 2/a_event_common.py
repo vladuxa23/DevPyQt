@@ -19,7 +19,6 @@ class Window(QtWidgets.QWidget):
         """
 
         print(event)
-
         return super().event(event)
 
 

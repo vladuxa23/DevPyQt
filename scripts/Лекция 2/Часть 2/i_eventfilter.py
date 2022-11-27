@@ -19,7 +19,7 @@ class Window(QtWidgets.QWidget):
 
         self.setFixedSize(300, 100)
 
-        self.label = QtWidgets.QLabel("Нажми на меня")
+        self.label = QtWidgets.QLabel("<H1>Нажми</H1> на меня")
         self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label.installEventFilter(self)  # Установка фильтра событий на конкретный виджет
 

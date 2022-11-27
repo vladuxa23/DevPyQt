@@ -38,8 +38,7 @@ class MainWindow(QtWidgets.QWidget):
         :return: None
         """
 
-        # self.child_window = OtherWindow()
-        self.child_window = OtherWindow(self)
+        self.child_window = OtherWindow()
 
     def initSignals(self) -> None:
         """
@@ -50,7 +49,7 @@ class MainWindow(QtWidgets.QWidget):
 
         self.pb.clicked.connect(self.open_child_window)
 
-        self.child_window.send_data.connect(lambda x: print(f"{ctime()} Main {x}"))
+        # self.child_window.send_data.connect(lambda x: print(f"{ctime()} Main {x}"))
 
     def open_child_window(self) -> None:
         """
@@ -79,6 +78,8 @@ class OtherWindow(QtWidgets.QWidget):
         """
 
         self.setFixedSize(300, 300)
+        label = QtWidgets.QLabel("Hello", self)
+        label.move(10, 10)
 
     def initSignals(self) -> None:
         """

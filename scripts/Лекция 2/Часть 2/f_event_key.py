@@ -2,7 +2,7 @@
 Перехват и обработка события нажатия на клавиатуру
 """
 
-from PySide6 import QtWidgets, QtGui
+from PySide6 import QtWidgets, QtGui, QtCore
 
 
 class Window(QtWidgets.QWidget):

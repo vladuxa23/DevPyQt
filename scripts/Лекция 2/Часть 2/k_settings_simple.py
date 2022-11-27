@@ -78,10 +78,12 @@ class Window(QtWidgets.QWidget):
         self.lineEditName.setText(self.settings.value("Name", ""))
         self.lineEditSurname.setText(self.settings.value("Surname", ""))
 
-        if self.settings.value("CheckState") == "true":
-            self.checkBox.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.checkBox.setCheckState(QtCore.Qt.Unchecked)
+        data = self.settings.value("CheckState")
+        self.checkBox.setCheckState(self.settings.value("CheckState"))
+        # if self.settings.value("CheckState") == "true":
+        #     self.checkBox.setCheckState(QtCore.Qt.Checked)
+        # else:
+        #     self.checkBox.setCheckState(QtCore.Qt.Unchecked)
 
     def showSettingsPath(self) -> None:
         """
@@ -113,9 +115,9 @@ class Window(QtWidgets.QWidget):
         if self.checkBox.isChecked():
             self.settings.setValue("Name", self.lineEditName.text())
             self.settings.setValue("Surname", self.lineEditSurname.text())
-            self.settings.setValue("CheckState", self.checkBox.isChecked())
+            self.settings.setValue("CheckState", self.checkBox.checkState())
         else:
-            self.settings.setValue("CheckState", self.checkBox.isChecked())
+            self.settings.setValue("CheckState", self.checkBox.checkState())
 
 
 if __name__ == "__main__":
