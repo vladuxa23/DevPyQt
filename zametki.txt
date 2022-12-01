@@ -1,2 +1,2 @@
 pyside6-designer - открытие дизайнера форм
-pyside6-uic 1_mirror_text.ui > 1_mirror_text.py - преобразование ui в py файл
+pyside6-uic name.ui > name.py - преобразование ui в py файл
