@@ -13,7 +13,7 @@ from time import ctime
 from b_form import Ui_MainWindow
 
 
-class Window(QtWidgets.QWidget):
+class Window(QtWidgets.QMainWindow):
 
     def __init__(self, parent=None):
         super().__init__(parent)
