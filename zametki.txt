@@ -1,0 +1,1 @@
+pyside6-uic 1_mirror_text.ui > 1_mirror_text.py - преобразование ui в py файл
