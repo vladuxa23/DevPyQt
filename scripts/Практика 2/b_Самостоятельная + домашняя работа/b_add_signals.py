@@ -9,7 +9,6 @@ class Window(QtWidgets.QWidget):
         super().__init__(parent)
 
         self.initUi()
-        self.initSignals()
 
     def initUi(self) -> None:
         """
@@ -132,7 +131,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        self.pushButtonComboBox.clicked.connect(lambda: self.plainTextEditLog.setPlainText(self.comboBox.currentText()))
+        self.pushButtonComboBox  # TODO подключить слот для вывода текста из comboBox в plainTextEditLog при нажатии на кнопку
         self.pushButtonLineEdit.clicked.connect(self.onPushButtonLineEditClicked)
         self.pushButtonTextEdit  # TODO подключить слот для вывода текста из textEdit в plainTextEditLog при нажатии на кнопку
         self.pushButtonPlainTextEdit  # TODO подключить слот для вывода текста из plaineTextEdit в plainTextEditLog при нажатии на кнопку
@@ -142,9 +141,9 @@ class Window(QtWidgets.QWidget):
         self.pushButtonDateTimeEdit  # TODO подключить слот для вывода времени из dateTimeEdit в plainTextEditLog при нажатии на кнопку
         self.pushButtonClearLog  # TODO подключить слот для очистки plainTextEditLog при нажатии на кнопку
 
-        self.comboBox.currentIndexChanged.connect(self.comboBoxIndexChanged)  # TODO подключить слот для вывода текста в plainTextEditLog при изменении выбранного элемента в comboBox
-        self.spinBox.valueChanged.connect(lambda x: self.plainTextEditLog.setPlainText(str(x)))  # TODO подключить слот для вывода значения в plainTextEditLog при изменении значения в spinBox
-        self.dateTimeEdit.dateTimeChanged.connect(lambda x: self.plainTextEditLog.setPlainText(str(x)))  # TODO подключить слот для вывода датывремени в plainTextEditLog при изменении датывремени в dateTimeEdit
+        self.comboBox  # TODO подключить слот для вывода текста в plainTextEditLog при изменении выбранного элемента в comboBox
+        self.spinBox  # TODO подключить слот для вывода значения в plainTextEditLog при изменении значения в spinBox
+        self.dateTimeEdit  # TODO подключить слот для вывода датывремени в plainTextEditLog при изменении датывремени в dateTimeEdit
 
     # slots --------------------------------------------------------------
     def onPushButtonLineEditClicked(self) -> None:
@@ -157,8 +156,6 @@ class Window(QtWidgets.QWidget):
         self.plainTextEditLog.setPlainText(self.lineEdit.text())
 
     # TODO Самостоятельная реализация слотов для сигналов
-    def comboBoxIndexChanged(self):
-        self.plainTextEditLog.setPlainText(f"{self.comboBox.currentIndex()}-{self.comboBox.currentText()}")
 
 
 if __name__ == "__main__":
