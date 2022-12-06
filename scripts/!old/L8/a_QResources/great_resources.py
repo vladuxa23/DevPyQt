@@ -1,6 +1,6 @@
 import sys
 
-from PySide2 import QtWidgets, QtGui, QtCore
+from PySide2 import QtWidgets, QtGui
 
 from scripts.L8.a_QResources.ui import my_res
 

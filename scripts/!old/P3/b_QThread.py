@@ -81,7 +81,7 @@ class QThreadPractice(QtWidgets.QWidget):
 
         self.ui.pushButtonTimerStart.setText("Начать отсчёт")
         self.ui.pushButtonTimerStart.setChecked(False)
-        self.timerThread.status = False
+        self.timerThread.__status = False
 
     # Слоты для url
     def onPushButtonUrlCheckStartClicked(self) -> None:
@@ -99,7 +99,7 @@ class QThreadPractice(QtWidgets.QWidget):
         else:
             self.ui.pushButtonUrlCheckStart.setText("Начать проверку")
             self.ui.pushButtonUrlCheckStart.setChecked(False)
-            self.urlCheckerThread.status = False
+            self.urlCheckerThread.__status = False
 
     def urlCheckerThreadUrlSignal(self, status_code) -> None:
         """
@@ -166,77 +166,6 @@ class TimerThread(QtCore.QThread):
             time.sleep(1)
             self.__timerCount -= 1
             self.timerSignal.emit(self.__timerCount)
-
-
-class UrlCheckerThread(QtCore.QThread):
-    urlSignal = QtCore.Signal(int)
-    logSignal = QtCore.Signal(Exception)
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
-
-        self.__url = None
-        self.__delay = None
-        self.status = None
-
-    def setUrl(self, url) -> None:
-        """
-        Метод для установки url который будем проверять
-
-        :param url: адрес сайта для проверки
-        :return: None
-        """
-
-        self.__url = url
-
-    def setDelay(self, delay) -> None:
-        """
-        Метод для установки времени задержки обновления сайта
-
-        :param delay: время задержки обновления информации о доступности сайта
-        :return: None
-        """
-
-        self.__delay = delay
-
-    def run(self) -> None:
-
-        if self.__url is None:
-            self.__url = "http://www.google.com"
-
-        if self.__delay is None:
-            self.__delay = 10
-
-        self.status = True
-
-        while self.status:
-            try:
-                response = requests.get(self.__url)
-                self.urlSignal.emit(response.status_code)
-                time.sleep(self.__delay)
-            except MissingSchema as err:
-                self.status = False
-                self.logSignal.emit(err)
-
-
-class SystemInfoThread(QtCore.QThread):
-    systemSignal = QtCore.Signal(list)
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.delay = None
-
-    def run(self) -> None:
-        if self.delay is None:
-            self.delay = 1
-
-        while True:
-            cpu_value = psutil.cpu_percent()
-            ram = psutil.virtual_memory()
-            ram_value = int(ram.used * 100 / ram.total)
-            self.systemSignal.emit([cpu_value, ram_value])
-            time.sleep(self.delay)
-
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication()

@@ -10,7 +10,7 @@ class Window(QtWidgets.QWidget):
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
 
-    window = WindowTemplate()
+    window = Window()
     window.show()
 
     app.exec()

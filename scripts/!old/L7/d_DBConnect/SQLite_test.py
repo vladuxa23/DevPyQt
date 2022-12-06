@@ -1,5 +1,4 @@
 import sys
-import time
 
 import ui.crud_design
 from PySide2 import QtWidgets, QtCore, QtSql, QtGui
