@@ -1,3 +1,7 @@
+"""
+Демонстрация простейшего использования сигналов/слотов
+"""
+
 from PySide6 import QtWidgets, QtCore
 
 
@@ -33,7 +37,7 @@ class Window(QtWidgets.QWidget):
         """
 
         # Указываем, что при нажатии на кнопку,
-        # будут выполнены дествия описанные
+        # будут выполнены действия описанные
         # в методе класса onPushButtonClicked
         self.pushButton.clicked.connect(self.onPushButtonClicked)
 

@@ -1,5 +1,6 @@
 import time
-from PySide2 import QtCore, QtWidgets
+
+from PySide6 import QtCore, QtWidgets
 
 
 class MyApp(QtWidgets.QMainWindow):
@@ -90,4 +91,5 @@ if __name__ == "__main__":
 
     myapp = MyApp()
     myapp.show()
-    app.exec_()
+
+    app.exec()
