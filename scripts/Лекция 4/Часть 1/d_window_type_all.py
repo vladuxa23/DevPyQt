@@ -1,3 +1,7 @@
+"""
+Демонстрация применения флагов Qt.WindowType
+"""
+
 from PySide6 import QtWidgets, QtCore
 
 
