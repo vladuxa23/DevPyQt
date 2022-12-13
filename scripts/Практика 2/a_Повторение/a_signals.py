@@ -11,46 +11,69 @@
 from PySide6 import QtWidgets, QtCore
 
 
-def reverse_(str_) -> str:
-    """
-    Внешняя функция разворота
-    """
-    # result = ''.join(reversed(str_))
-    result = str_[::-1]
-    return result
-
 class Window(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+
         self.initUi()
         self.initSignals()
 
+    def initUi(self) -> None:
+        """
+        Инициализация Ui
+        :return: None
+        """
 
-    def initUi(self):
-        self.lineEditInput = QtWidgets.QLineEdit()
+        self.lineEditInput = QtWidgets.QLineEdit()  # строка\поле для ввода
+        self.lineEditInput.setPlaceholderText("Введите текст")
+
         self.lineEditMirror = QtWidgets.QLineEdit()
-        self.pushButtonMirror = QtWidgets.QPushButton("Развернуть")
+        self.lineEditMirror.setReadOnly(True)  # только чтение
+        # self.lineEditMirror.setEnabled(False)  # серая строка недоступна пользователю, доступна для вывода
+        self.lineEditMirror.setPlaceholderText("Текст задом на перед")
 
-        layout_1 = QtWidgets.QHBoxLayout()
-        layout_1.addWidget(self.lineEditInput)
-        layout_1.addWidget(self.lineEditMirror)
-        main_layout = QtWidgets.QVBoxLayout()
-        main_layout.addLayout(layout_1)
-        main_layout.addWidget(self.pushButtonMirror)
+        self.pushButton = QtWidgets.QPushButton("Очистить")
+        # self.pushButton.setText("Отобразить")  # позволяет установить текст в объект
 
-        self.setLayout(main_layout)
+        layoutLineEdit = QtWidgets.QHBoxLayout()
+        layoutLineEdit.addWidget(self.lineEditInput)
+        layoutLineEdit.addWidget(self.lineEditMirror)
+
+        layoutMain = QtWidgets.QVBoxLayout()
+        layoutMain.addLayout(layoutLineEdit)
+        layoutMain.addWidget(self.pushButton)
+
+        self.setLayout(layoutMain)
 
     def initSignals(self) -> None:
         """
-        Инициализация сигналов
+        Инициализация сигнала
 
         :return: None
         """
-        self.pushButtonMirror.clicked.connect(self.set_lineEditMirror())  # = QtCore.Signal(...)
+        self.pushButton.clicked.connect(lambda: self.lineEditMirror.setText(""))
 
-    def set_lineEditMirror(self):
-        self.lineEditMirror.setText(self.lineEditInput.text()[::-1])
+        # self.lineEditInput.textChanged.connect(
+        #     lambda input_text: self.lineEditMirror.setText(input_text[::-1])  # действие при вводе в строку ввода
+        # )
+
+        self.lineEditInput.textChanged.connect(self.mirror_text)  # действие при вводе в строку ввода
+
+    def mirror_text(self) -> None:
+        """
+        Отображение текста задом на перед
+
+        return: None
+        """
+        input_text = self.lineEditInput.text()  # получение данных из строки ввода пользователем
+
+        if not input_text:
+            QtWidgets.QMessageBox.warning(self, "Ошибка",  "Не введен текст!")  # вывод ошибки
+            self.lineEditMirror.setText("")
+            return
+
+        self.lineEditMirror.setText(input_text[::-1])  # вывод в строку развернутого текста
 
 
 if __name__ == "__main__":
