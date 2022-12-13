@@ -7,23 +7,34 @@
 (переопределить метод event), вывод событий производить в консоль и в plainTextEdit,
 размещённый на виджете, при выводе события указывать время, когда оно произошло
 """
+import time
 
-from PySide6 import QtWidgets
+import PySide6
+from PySide6 import QtWidgets, QtCore
 from time import ctime
 from b_form import Ui_MainWindow
 
 
-class Window(QtWidgets.QMainWindow):
+class Window(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
+        # self.initUi()
 
-    def event(self, event) -> bool:
-        self.ui.plainTextEdit.setPlainText(str(event)+"\n")
-        print(event)
-        return super().event(event)
+    # def initUi(self) -> None:
+    #     self.plainTextEdit = QtWidgets.QPlainTextEdit()
+    #
+    #     layout = QtWidgets.QHBoxLayout()
+    #     layout.addWidget(self.plainTextEdit)
+    #
+    #     self.setLayout(layout)
+
+    def event(self, event: QtCore.QEvent) -> bool:
+        a = f"{time.ctime()}: {event}"
+        print(a)
+        # self.plainTextEdit.appendPlainText(a + "\n")
+
+        return super(Window, self).event(event)
 
 
 if __name__ == "__main__":
