@@ -144,6 +144,7 @@ class Window(QtWidgets.QWidget):
         self.pushButtonClearLog.clicked.connect(self.onPushButtonClearLog)
 
         self.comboBox.currentTextChanged.connect(self.ComboBoxChange)
+        # self.comboBox.currentTextChanged.connect(lambda x: self.plainTextEditLog.setPlainText(str(x)))
         self.spinBox.valueChanged.connect(self.SpinBoxChange)
         self.dateTimeEdit.dateTimeChanged.connect(self.DateTimeEditChange)
 

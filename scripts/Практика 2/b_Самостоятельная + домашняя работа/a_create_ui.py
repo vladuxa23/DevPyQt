@@ -14,9 +14,12 @@ class Window(QtWidgets.QWidget):
 
         :return: None
         """
+        self.setFixedSize(250, 150)
 
         labelLogin = QtWidgets.QLabel("Логин")
-        labelRegistration = QtWidgets.QLabel("Регистрация")
+        labelLogin.setMinimumWidth(80)
+        labelRegistration = QtWidgets.QLabel("Пароль")
+        labelRegistration.setMinimumWidth(80)
 
         self.lineEditLogin = QtWidgets.QLineEdit()
         self.lineEditLogin.setPlaceholderText("Введите логин")

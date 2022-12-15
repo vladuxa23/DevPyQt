@@ -1,0 +1,3 @@
+Error: File 'aa.ui' is not valid
+
+while executing '/Users/rodionbelyaev/PycharmProjects/pythonProject/venv/lib/python3.10/site-packages/PySide6/Qt/libexec/uic -g python aa.ui /Users/rodionbelyaev/Documents/PyCharm/DevPyQtRodbely/scripts/Практика 2/b_Самостоятельная + домашняя работа/ui'

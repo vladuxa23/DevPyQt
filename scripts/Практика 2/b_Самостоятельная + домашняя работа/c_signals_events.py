@@ -19,7 +19,7 @@
     * При перемещении окна выводить его старую и новую позицию
     * При изменении размера окна выводить его новый размер
 """
-
+from c_sgs import Ui_Form
 
 from PySide6 import QtWidgets
 
@@ -28,6 +28,8 @@ class Window(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.ui = Ui_Form()
+        self.ui.setupUi(self)
 
 
 if __name__ == "__main__":
