@@ -29,4 +29,4 @@ if __name__ == "__main__":
     myapp = MyDrawRect()
     myapp.show()
 
-    app.exec_()
+    app.exec()
