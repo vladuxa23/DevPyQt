@@ -1,15 +1,26 @@
-import time
 from PySide6 import QtCore, QtWidgets, QtGui
 
 
-class MyDrawRect(QtWidgets.QWidget):
+class Widget(QtWidgets.QWidget):
     def __init__(self, parent=None):
-        super(MyDrawRect, self).__init__(parent)
+        super().__init__(parent)
+
         self.x1, self.y1 = 0, 0
         self.x2, self.y2 = 0, 0
 
     def paintEvent(self, event: QtGui.QPaintEvent) -> None:
         painter = QtGui.QPainter(self)
+
+        pen = QtGui.QPen()
+        pen.setColor(QtCore.Qt.GlobalColor.red)
+        # pen.setBrush(QtCore.Qt.BrushStyle.Dense4Pattern)
+
+        brush = QtGui.QBrush()
+        brush.setColor(QtCore.Qt.GlobalColor.green)
+
+        painter.setPen(pen)
+        painter.setBrush(brush)
+
         w, h = self.x2 - self.x1, self.y2 - self.y1
         painter.drawRect(self.x1, self.y1, w, h)
 
@@ -26,7 +37,7 @@ class MyDrawRect(QtWidgets.QWidget):
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
 
-    myapp = MyDrawRect()
+    myapp = Widget()
     myapp.show()
 
-    app.exec_()
+    app.exec()
