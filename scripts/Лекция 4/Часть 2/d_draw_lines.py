@@ -6,6 +6,7 @@ class Window(QtWidgets.QWidget):
         super().__init__(parent)
 
     def paintEvent(self, event: QtGui.QPaintEvent) -> None:
+        super(Window, self).paintEvent(event)
         painter = QtGui.QPainter(self)
 
         line_1 = QtCore.QLine(10, 10, 100, 60)
