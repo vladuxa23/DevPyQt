@@ -40,7 +40,7 @@ class Window(QtWidgets.QWidget):
         self.move(0, 0)
 
     def GoTopRight(self):
-        self.move()
+        self.move(0, 0)
 
 
 

@@ -1,4 +1,4 @@
-"""
+d"""
 Реализовать виджет, который будет работать с потоком WeatherHandler из модуля a_threads
 
 Создавать форму можно как в ручную, так и с помощью программы Designer
@@ -9,3 +9,6 @@
 3. поле для вывода информации о погоде в указанных координатах
 4. поток необходимо запускать и останавливать при нажатие на кнопку
 """
+from PySide6 import QtCore, QtWidgets
+from ui.weather import Ui_Form
+from a_threads import WeatherHandler
