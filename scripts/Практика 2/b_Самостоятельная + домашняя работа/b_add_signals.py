@@ -9,6 +9,7 @@ class Window(QtWidgets.QWidget):
         super().__init__(parent)
 
         self.initUi()
+        # TODO: Вызвать метод с инициализацией сигналов
 
     def initUi(self) -> None:
         """
