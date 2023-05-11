@@ -12,7 +12,6 @@ class Window(QtWidgets.QWidget):
         self.initUi()
         self.initSignals()
 
-        QtWidgets.QAbstractButton
         print(self.pushButton.clicked)
 
     def initUi(self) -> None:

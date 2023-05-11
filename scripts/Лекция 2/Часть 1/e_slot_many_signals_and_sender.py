@@ -12,6 +12,8 @@ class Window(QtWidgets.QWidget):
         self.initUi()
         self.initSignals()
 
+        self.counter = 0
+
     def initUi(self) -> None:
         """
         Доинициализация Ui
@@ -21,8 +23,8 @@ class Window(QtWidgets.QWidget):
 
         self.setFixedSize(200, 200)
 
-        self.button1 = QtWidgets.QPushButton("1", self)
-        self.button2 = QtWidgets.QPushButton("2", self)
+        self.button1 = QtWidgets.QPushButton("1")
+        self.button2 = QtWidgets.QPushButton("2")
 
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(self.button1)
@@ -48,6 +50,8 @@ class Window(QtWidgets.QWidget):
         """
 
         widget_link = self.sender()
+        widget_link.setText(str(self.counter))
+        self.counter += 1
         print(widget_link)
         print(widget_link.text())
 

@@ -66,6 +66,8 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
+        print("Обработан сигнал вывода ошибки")
+
         data = self.process.readAllStandardError()
         stderr = bytes(data).decode("utf8")
         self.plainTextEdit.appendPlainText(stderr)
@@ -76,6 +78,8 @@ class Window(QtWidgets.QWidget):
 
         :return: None
         """
+
+        print("Обработан сигнал стандартного вывода")
 
         data = self.process.readAllStandardOutput()
         stdout = bytes(data).decode("utf8")

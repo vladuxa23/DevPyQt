@@ -9,7 +9,7 @@ class CustomPushButton(QtWidgets.QPushButton):  # Наследуемся от QP
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
 
-    # Добавление виджетов/донастройка (опционально)
+    # # Добавление виджетов/донастройка (опционально)
     #     self.initUi()
     #
     # def initUi(self) -> None:

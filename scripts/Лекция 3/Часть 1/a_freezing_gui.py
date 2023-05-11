@@ -50,6 +50,7 @@ class Window(QtWidgets.QWidget):
 
         for i in range(10):
             time.sleep(1)
+            print(i)
             self.label.setText(f"Отсчёт идёт: {i} сек.")
 
 

@@ -79,7 +79,7 @@ class Window(QtWidgets.QWidget):
         self.lineEditSurname.setText(self.settings.value("Surname", ""))
 
         data = self.settings.value("CheckState")
-        self.checkBox.setCheckState(self.settings.value("CheckState"))
+        self.checkBox.setCheckState(self.settings.value("CheckState", QtCore.Qt.Unchecked))
         # if self.settings.value("CheckState") == "true":
         #     self.checkBox.setCheckState(QtCore.Qt.Checked)
         # else:

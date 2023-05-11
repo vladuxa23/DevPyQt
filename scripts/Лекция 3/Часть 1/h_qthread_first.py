@@ -18,7 +18,7 @@ class Worker(QtCore.QObject):
         :return: None
         """
 
-        for i in range(5):
+        for i in range(10):
             time.sleep(1)
             self.progress.emit(i + 1)
         self.finished.emit()

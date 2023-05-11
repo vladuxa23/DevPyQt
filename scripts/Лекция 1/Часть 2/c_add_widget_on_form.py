@@ -11,8 +11,8 @@ class AddWidgets(QtWidgets.QWidget):
         super().__init__(parent)
 
         # Напрямую
-        btn = QtWidgets.QPushButton("Кнопка", self)
-        btn.move(30, 30)
+        # btn = QtWidgets.QPushButton("Кнопка", self)
+        # btn.move(30, 30)
 
         # Через компоновку
         # layout = QtWidgets.QVBoxLayout()
@@ -33,4 +33,4 @@ if __name__ == "__main__":
     window = AddWidgets()
     window.show()
 
-    app.exec_()
+    app.exec()
