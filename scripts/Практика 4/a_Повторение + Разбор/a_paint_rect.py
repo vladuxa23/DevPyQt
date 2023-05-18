@@ -15,11 +15,12 @@ class Widget(QtWidgets.QWidget):
         pen.setColor(QtCore.Qt.GlobalColor.red)
         # pen.setBrush(QtCore.Qt.BrushStyle.Dense4Pattern)
 
-        brush = QtGui.QBrush()
-        brush.setColor(QtCore.Qt.GlobalColor.green)
+        # TODO не отрабатывает
+        # brush = QtGui.QBrush()
+        # brush.setColor(QtCore.Qt.GlobalColor.red)
 
         painter.setPen(pen)
-        painter.setBrush(brush)
+        # painter.setBrush(brush)
 
         w, h = self.x2 - self.x1, self.y2 - self.y1
         painter.drawRect(self.x1, self.y1, w, h)
