@@ -1,11 +1,11 @@
-from PySide2 import QtWidgets, QtCore
+from PySide6 import QtWidgets, QtCore
 from SQLAlchemy_model import addUser, getAllUsers
 
 
 class ModelPreview(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
-        super(ModelPreview, self).__init__(parent)
+        super().__init__(parent)
 
         self.initUi()
         self.loadUsers()

@@ -1,7 +1,7 @@
 import random
 
-from PySide2 import QtWidgets, QtCore
-from ui.forms.P1_QtWidgetsAndWindows_AddUi_design import Ui_MainWindow
+from PySide6 import QtWidgets, QtCore
+from ui.forms.form import Ui_MainWindow
 
 # https://doc.qt.io/qtforpython/overviews/stylesheet-examples.html
 
@@ -19,7 +19,8 @@ class MyMainWindow(QtWidgets.QMainWindow):
         # 1
         # from ui.themes import breeze_resources
         # breeze_resources.qInitResources()
-        # file = QtCore.QFile(":/dark.qss")
+        # # file = QtCore.QFile(":/dark.qss")
+        # file = QtCore.QFile(":/light.qss")
         # file.open(QtCore.QFile.ReadOnly | QtCore.QFile.Text)
         # stream = QtCore.QTextStream(file)
         # self.setStyleSheet(stream.readAll())
@@ -45,8 +46,8 @@ class MyMainWindow(QtWidgets.QMainWindow):
         #     self.setStyleSheet(f.read())
 
         # 7
-        # with open('./ui/themes/Qdarkstyle.qss', 'r') as f:
-        #     self.setStyleSheet(f.read())
+        with open('./ui/themes/Qdarkstyle.qss', 'r') as f:
+            self.setStyleSheet(f.read())
 
 
 if __name__ == "__main__":

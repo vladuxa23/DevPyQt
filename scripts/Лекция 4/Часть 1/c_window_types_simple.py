@@ -14,10 +14,10 @@ class Window(QtWidgets.QWidget):
         # self.setWindowFlags(QtCore.Qt.MSWindowsFixedSizeDialogHint)
 
         # Неизменяемое окно без рамок
-        # self.setWindowFlags(QtCore.Qt.MSWindowsFixedSizeDialogHint | QtCore.Qt.FramelessWindowHint)
+        self.setWindowFlags(QtCore.Qt.MSWindowsFixedSizeDialogHint | QtCore.Qt.FramelessWindowHint)
 
         # Окно со строкой заголовка
-        self.setWindowFlags(QtCore.Qt.WindowTitleHint)
+        # self.setWindowFlags(QtCore.Qt.WindowTitleHint)
 
 
 if __name__ == "__main__":

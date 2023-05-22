@@ -1,6 +1,6 @@
 import random
 
-from PySide2 import QtCore, QtWidgets, QtWebEngineWidgets
+from PySide6 import QtCore, QtWidgets, QtWebEngineWidgets
 import plotly.graph_objects as go
 import plotly.express as px
 import math
@@ -277,4 +277,4 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication([])
     widget = Widget()
     widget.show()
-    app.exec_()
+    app.exec()

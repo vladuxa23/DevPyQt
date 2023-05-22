@@ -1,0 +1,1 @@
+https://mypclab.com/create-a-portable-python-3-10-virtual-environment/
