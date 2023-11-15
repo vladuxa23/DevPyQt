@@ -75,11 +75,12 @@ class MyFirstWindow(QtWidgets.QWidget):  # Наследуемся от QMainWind
 
 
 if __name__ == "__main__":
-    app = QtWidgets.QApplication()  # Создаем  объект приложения
-    # app = QtWidgets.QApplication(sys.argv)  # Если PyQt
+    # app = QtWidgets.QApplication()  # Создаем  объект приложения
+    # # app = QtWidgets.QApplication(sys.argv)  # Если PyQt
+    #
+    # myWindow = MyFirstWindow()  # Создаём объект окна
+    # myWindow.show()  # Показываем окно
+    #
+    # sys.exit(app.exec_())  # Если exit, то код дальше не исполняется
 
-    myWindow = MyFirstWindow()  # Создаём объект окна
-    myWindow.show()  # Показываем окно
-
-    sys.exit(app.exec_())  # Если exit, то код дальше не исполняется
-
+    import requests

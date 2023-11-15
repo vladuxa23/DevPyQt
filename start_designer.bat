@@ -1,1 +1,1 @@
-PySide2-designer
+PySide6-designer
