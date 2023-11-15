@@ -1,6 +1,5 @@
 import sys
-from PySide2 import QtWidgets, QtCore, QtGui
-import ast
+from PySide6 import QtWidgets, QtCore, QtGui
 
 
 class ManyWindow(QtWidgets.QWidget):
@@ -65,6 +64,8 @@ class DroppedWindow(QtWidgets.QWidget):
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
+
     window = ManyWindow()
     window.show()
-    app.exec_()
+
+    app.exec()

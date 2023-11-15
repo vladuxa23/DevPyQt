@@ -27,8 +27,8 @@ class LoadScreen(QtWidgets.QWidget):
 
         self.hide()  # скрываем по умолчанию
 
-        # self.movie = QtGui.QMovie("static/gif/load_1.gif")
-        self.movie = QtGui.QMovie("static/gif/load_2.gif")
+        self.movie = QtGui.QMovie("static/gif/load_1.gif")
+        # self.movie = QtGui.QMovie("static/gif/load_2.gif")
 
         labelAnimation = QtWidgets.QLabel()
         labelAnimation.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)

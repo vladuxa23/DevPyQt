@@ -71,6 +71,10 @@ class Window(QtWidgets.QWidget):
 
         result = []
         for i in range(self.verticalLayoutDynamicWidgets.count()):
+            print(self.verticalLayoutDynamicWidgets)
+            print(self.verticalLayoutDynamicWidgets.itemAt(i))
+            print(self.verticalLayoutDynamicWidgets.itemAt(i).widget())
+            print()
             widget_link = self.verticalLayoutDynamicWidgets.itemAt(i).widget()
             result.append(widget_link.text())
 

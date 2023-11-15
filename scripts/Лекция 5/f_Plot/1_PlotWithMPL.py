@@ -4,7 +4,7 @@ import matplotlib
 
 matplotlib.use('Qt5Agg')
 
-from PySide2 import QtCore, QtWidgets
+from PySide6 import QtCore, QtWidgets
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas, NavigationToolbar2QT
 from matplotlib.figure import Figure
@@ -107,9 +107,9 @@ class MainWindow(QtWidgets.QMainWindow):
         #     color: white
         # }
         # """)
-
+        #
         layout = QtWidgets.QVBoxLayout()
-        layout.addLayout(layout_title)  # Раскомментировать, если устанавливаем стили
+        # layout.addLayout(layout_title)  # Раскомментировать, если устанавливаем стили
         layout.addWidget(toolbar)
         layout.addLayout(paramLayout)
         layout.addWidget(self.canvas)
@@ -143,4 +143,4 @@ if __name__ == "__main__":
     w = MainWindow()
     w.show()
 
-    app.exec_()
+    app.exec()

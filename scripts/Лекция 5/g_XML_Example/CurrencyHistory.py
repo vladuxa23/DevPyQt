@@ -2,7 +2,7 @@ import sys
 sys.path.append("../examples/My_Example")
 import xml.etree.ElementTree as ET
 import requests
-from PySide2 import QtWidgets, QtCore, QtGui
+from PySide6 import QtWidgets, QtCore, QtGui
 
 # https://cbr.ru/development/SXML/
 
@@ -92,4 +92,4 @@ if __name__ == "__main__":
     myapp = CurrencyHistory()
     myapp.show()
 
-    app.exec_()
+    app.exec()

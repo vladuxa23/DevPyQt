@@ -10,13 +10,15 @@ class Window(QtWidgets.QWidget):
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)  # Установка прозрачного фона
 
         # добавление эффекта тени
-        # self.shadow = QtWidgets.QGraphicsDropShadowEffect(self)
-        # self.shadow.setBlurRadius(10)
-        # self.shadow.setXOffset(0)
-        # self.shadow.setYOffset(0)
-        # self.shadow.setColor(QtGui.QColor(0, 0, 0, 120))
-        # self.setGraphicsEffect(self.shadow)
+        self.shadow = QtWidgets.QGraphicsDropShadowEffect(self)
+        self.shadow.setBlurRadius(10)
+        self.shadow.setXOffset(10)
+        self.shadow.setYOffset(10)
+        self.shadow.setColor(QtGui.QColor(0, 0, 0, 120))
+        self.setGraphicsEffect(self.shadow)
+        #
         label = QtWidgets.QLabel()
+        label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         label.setPixmap(QtGui.QPixmap('64.png'))
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(label)
