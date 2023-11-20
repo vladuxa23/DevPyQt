@@ -25,4 +25,4 @@ myWindow = QtWidgets.QWidget()  # Создание объект окна
 # # print(myWindow.layout())
 
 myWindow.show()  # Показ окна
-app.exec()  # Забуск бесконечного цикла приложения (событий)
+app.exec()  # Запуск бесконечного цикла приложения (событий)

@@ -23,7 +23,7 @@ class Window(QtWidgets.QMainWindow):
 
         # statusBar отсутствует у QWidgets
         self.appStatusBar = self.statusBar()
-        self.appStatusBar.showMessage("Status: Ok!")
+        self.appStatusBar.showMessage("Status: Ok!", timeout=2000)
 
         # Настройка компоновки окна
         layout = QtWidgets.QHBoxLayout()
