@@ -17,13 +17,13 @@ class MyMainWindow(QtWidgets.QMainWindow):
     def initUi(self):
         pass
         # 1
-        # from ui.themes import breeze_resources
-        # breeze_resources.qInitResources()
-        # # file = QtCore.QFile(":/dark.qss")
+        from ui.themes import breeze_resources
+        breeze_resources.qInitResources()
+        file = QtCore.QFile(":/dark.qss")
         # file = QtCore.QFile(":/light.qss")
-        # file.open(QtCore.QFile.ReadOnly | QtCore.QFile.Text)
-        # stream = QtCore.QTextStream(file)
-        # self.setStyleSheet(stream.readAll())
+        file.open(QtCore.QFile.ReadOnly | QtCore.QFile.Text)
+        stream = QtCore.QTextStream(file)
+        self.setStyleSheet(stream.readAll())
 
         # 2
         # with open('./ui/themes/Dark.qss', 'r') as f:
@@ -46,8 +46,8 @@ class MyMainWindow(QtWidgets.QMainWindow):
         #     self.setStyleSheet(f.read())
 
         # 7
-        with open('./ui/themes/Qdarkstyle.qss', 'r') as f:
-            self.setStyleSheet(f.read())
+        # with open('./ui/themes/Qdarkstyle.qss', 'r') as f:
+        #     self.setStyleSheet(f.read())
 
 
 if __name__ == "__main__":

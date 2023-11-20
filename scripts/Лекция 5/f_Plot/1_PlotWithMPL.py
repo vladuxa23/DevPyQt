@@ -51,65 +51,65 @@ class MainWindow(QtWidgets.QMainWindow):
         paramLayout.addStretch(1)
 
         # SET STYLE
-        # title = QtWidgets.QLabel("MyGraph")
-        # title.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        # pb_close = QtWidgets.QPushButton('X')
-        # pb_close.setObjectName("pb_close")
-        # pb_close.setMaximumSize(22, 22)
-        # pb_close.setMinimumSize(22, 22)
-        # pb_close.clicked.connect(lambda: self.close())
-        # pb_hide = QtWidgets.QPushButton('_')
-        # pb_hide.setObjectName("pb_hide")
-        # pb_hide.setMaximumSize(22, 22)
-        # pb_hide.setMinimumSize(22, 22)
-        # pb_hide.clicked.connect(lambda: self.showMinimized())
-        #
-        # layout_title = QtWidgets.QHBoxLayout()
-        # layout_title.addWidget(title, alignment=QtCore.Qt.AlignRight)
-        # layout_title.addWidget(pb_hide)
-        # layout_title.addWidget(pb_close)
-        # layout_title.setAlignment(QtCore.Qt.AlignRight)
-        # self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
-        #
-        # self.setStyleSheet("""
-        # #pb_close {
-        #     background-color: #bd93f9;
-        #     color: #f8f8f2;
-        #     border-style: none;
-        #     border-radius: 11px;
-        # }
-        # #pb_hide {
-        #     background-color: #6272a4;
-        #     color: #f8f8f2;
-        #     border-style: none;
-        #     border-radius: 11px;
-        # }
-        # #pb_close:hover, #pb_hide:hover {
-        #     background-color: #ff5555;
-        # }
-        # #pb_close:pressed, #pb_hide:pressed {
-        #     background-color: #44475a;
-        # }
-        # #cw {
-        #     background-color: #44475a;
-        # }
-        # #toolbar {
-        #     border-style: 1px solid #000
-        # }
-        # QLabel {
-        #     color: white
-        # }
-        # QSpinBox {
-        #     border:none;
-        #     background-color: #6272a4;
-        #     border-width: 3;
-        #     font: bold 14px;
-        #     color: white
-        # }
-        # """)
-        #
+        title = QtWidgets.QLabel("MyGraph")
+        title.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        pb_close = QtWidgets.QPushButton('X')
+        pb_close.setObjectName("pb_close")
+        pb_close.setMaximumSize(22, 22)
+        pb_close.setMinimumSize(22, 22)
+        pb_close.clicked.connect(lambda: self.close())
+        pb_hide = QtWidgets.QPushButton('_')
+        pb_hide.setObjectName("pb_hide")
+        pb_hide.setMaximumSize(22, 22)
+        pb_hide.setMinimumSize(22, 22)
+        pb_hide.clicked.connect(lambda: self.showMinimized())
+
+        layout_title = QtWidgets.QHBoxLayout()
+        layout_title.addWidget(title, alignment=QtCore.Qt.AlignRight)
+        layout_title.addWidget(pb_hide)
+        layout_title.addWidget(pb_close)
+        layout_title.setAlignment(QtCore.Qt.AlignRight)
+        self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+
+        self.setStyleSheet("""
+        #pb_close {
+            background-color: #bd93f9;
+            color: #f8f8f2;
+            border-style: none;
+            border-radius: 11px;
+        }
+        #pb_hide {
+            background-color: #6272a4;
+            color: #f8f8f2;
+            border-style: none;
+            border-radius: 11px;
+        }
+        #pb_close:hover, #pb_hide:hover {
+            background-color: #ff5555;
+        }
+        #pb_close:pressed, #pb_hide:pressed {
+            background-color: #44475a;
+        }
+        #cw {
+            background-color: #44475a;
+        }
+        #toolbar {
+            border-style: 1px solid #000
+        }
+        QLabel {
+            color: white
+        }
+        QSpinBox {
+            border:none;
+            background-color: #6272a4;
+            border-width: 3;
+            font: bold 14px;
+            color: white
+        }
+        """)
+
         layout = QtWidgets.QVBoxLayout()
-        # layout.addLayout(layout_title)  # Раскомментировать, если устанавливаем стили
+        layout.addLayout(layout_title)  # Раскомментировать, если устанавливаем стили
         layout.addWidget(toolbar)
         layout.addLayout(paramLayout)
         layout.addWidget(self.canvas)

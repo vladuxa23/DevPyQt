@@ -56,8 +56,8 @@ class Form(QtWidgets.QMainWindow):
     def initSQLModel(self):
         self.db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         self.db.setDatabaseName('fieldlist.db')
-        self.model = EditableSQLModel()
-        # self.model = QtSql.QSqlTableModel()
+        # self.model = EditableSQLModel()
+        self.model = QtSql.QSqlTableModel()
         self.model.setTable('field')
 
         self.model.select()
