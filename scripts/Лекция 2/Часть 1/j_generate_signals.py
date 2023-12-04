@@ -121,5 +121,6 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication()
 
     myapp = Main()
+    # myapp.custom_signal.connect(lambda data: print(data))
     myapp.show()
     app.exec()
