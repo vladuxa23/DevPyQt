@@ -34,8 +34,8 @@ class Canvas(QtWidgets.QLabel):
 
     def mouseMoveEvent(self, event: QtGui.QMouseEvent) -> None:
         if self.last_x is None:  # Первое срабатывание
-            self.last_x = event.x()
-            self.last_y = event.y()
+            self.last_x = event.position().x()
+            self.last_y = event.position().y()
             return  # Игнорируем его
 
         canvas = self.pixmap()
@@ -44,13 +44,13 @@ class Canvas(QtWidgets.QLabel):
         p.setWidth(4)
         p.setColor(self.pen_color)
         painter.setPen(p)
-        painter.drawLine(self.last_x, self.last_y, event.x(), event.y())
+        painter.drawLine(self.last_x, self.last_y, event.position().x(), event.position().y())
         painter.end()
         self.setPixmap(canvas)
 
         # Обновляем глобальные параметры точек X и Y
-        self.last_x = event.x()
-        self.last_y = event.y()
+        self.last_x = event.position().x()
+        self.last_y = event.position().y()
 
     def mouseReleaseEvent(self, event: QtGui.QMouseEvent) -> None:
         self.last_x = None
