@@ -22,7 +22,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        self.setFixedSize(200, 100)
+        self.setFixedSize(400, 200)
 
         layout = QtWidgets.QVBoxLayout()
 
