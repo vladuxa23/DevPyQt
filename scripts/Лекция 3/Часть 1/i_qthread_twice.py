@@ -9,7 +9,7 @@ from PySide6 import QtCore, QtWidgets
 
 
 class WorkerOne(QtCore.QThread):
-    progress = QtCore.Signal()
+    progress = QtCore.Signal(int)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -34,7 +34,7 @@ class WorkerOne(QtCore.QThread):
 
 
 class WorkerTwo(QtCore.QThread):
-    data_responsed = QtCore.Signal(dict)
+    data_responced = QtCore.Signal(dict)
 
     def run(self) -> None:
         """
@@ -46,7 +46,7 @@ class WorkerTwo(QtCore.QThread):
         while True:
             response = requests.get("http://ip-api.com/json/")
             data = response.json()
-            self.data_responsed.emit(data)
+            self.data_responced.emit(data)
             time.sleep(5)
 
 
@@ -67,7 +67,7 @@ class Window(QtWidgets.QWidget):
 
         self.label = QtWidgets.QLabel("Выполнение долгой задачи: ")
         self.pushButton = QtWidgets.QPushButton("Запустить долгую задачу")
-        self.pushButtonWeather = QtWidgets.QPushButton("Отслеживать погоду")
+        self.pushButtonWeather = QtWidgets.QPushButton("Получить данные по ip")
         self.pushButtonOtherProcess = QtWidgets.QPushButton("Другие действия с GUI")
         self.plainTextEdit = QtWidgets.QPlainTextEdit()
 

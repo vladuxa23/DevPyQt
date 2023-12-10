@@ -76,7 +76,9 @@ class Window(QtWidgets.QWidget):
         self.label.setText(f"Running {threadCount} Threads")
 
         threadPool = QtCore.QThreadPool.globalInstance()
-        for thread_number in range(threadCount):
+        threadPool.setMaxThreadCount(20)
+
+        for thread_number in range(20):
             runnable = Runnable(thread_number)
 
             threadPool.start(runnable)
