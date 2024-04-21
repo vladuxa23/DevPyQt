@@ -51,7 +51,7 @@ class DroppedWindow(QtWidgets.QWidget):
             file_name = url.toLocalFile()
             self.send_data.emit("Dropped file: " + file_name)
 
-    def paintEvent(self, event:QtGui.QPaintEvent) -> None:
+    def paintEvent(self, event: QtGui.QPaintEvent) -> None:
         painter = QtGui.QPainter(self)
 
         painter.drawText(
