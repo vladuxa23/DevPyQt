@@ -1,5 +1,5 @@
 import sys
-sys.path.append("../examples/My_Example")
+sys.path.append("../pyside_examples/My_Example")
 import xml.etree.ElementTree as ET
 import requests
 from PySide6 import QtWidgets, QtCore, QtGui

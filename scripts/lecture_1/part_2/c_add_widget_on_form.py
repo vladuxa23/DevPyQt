@@ -5,7 +5,7 @@
 from PySide6 import QtWidgets
 
 
-class AddWidgets(QtWidgets.QWidget):
+class Window(QtWidgets.QWidget):
 
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
@@ -30,7 +30,7 @@ class AddWidgets(QtWidgets.QWidget):
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
 
-    window = AddWidgets()
+    window = Window()
     window.show()
 
     app.exec()
