@@ -13,7 +13,7 @@ class Window(QtWidgets.QWidget):
         self.setWindowTitle("PyQt6 QRadioButton")  # Задаем заголовок окна
 
         # Создание интерфейса
-        self.label = QtWidgets.QLabel("")  # Создаем метку для отображения текста
+        self.label = QtWidgets.QLabel("Заглушка")  # Создаем метку для отображения текста
 
         rb_1 = QtWidgets.QRadioButton("JavaScript")  # Создаем радио-кнопку с надписью "JavaScript"
         rb_1.setChecked(True)  # Устанавливаем флажок по умолчанию

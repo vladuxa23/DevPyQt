@@ -23,8 +23,8 @@ class Window(QtWidgets.QWidget):
         label_text = QtWidgets.QLabel(self)  # Создание метки для текста
         label_text.setText("Новый текст")  # Установка текста метки
         label_text.move(100, 10)  # Перемещение текста
-        label_text.setFont(QtGui.QFont("Sansrif", 10))  # Установка шрифта и размера текста
-        label_text.setStyleSheet('color:red')  # Установка цвета текста
+        label_text.setFont(QtGui.QFont("Arial", 10))  # Установка шрифта и размера текста
+        label_text.setStyleSheet('color: red')  # Установка цвета текста
 
         # ----------Загрузка изображения------------
 
@@ -40,7 +40,7 @@ class Window(QtWidgets.QWidget):
         movie.setSpeed(100)  # Установка скорости проигрывания gif
 
         label_gif = QtWidgets.QLabel(self)  # Создание метки для gif
-        label_gif.setGeometry(100, 100, 200, 200)  # Установка геометрии метки для gif
+        label_gif.setGeometry(100, 100, 800, 400)  # Установка геометрии метки для gif
         label_gif.setMovie(movie)  # Установка gif в метку
 
         movie.start()  # Запуск проигрывания gif

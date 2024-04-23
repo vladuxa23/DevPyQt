@@ -16,7 +16,8 @@ class Window(QtWidgets.QWidget):
 
         date_time_edit = QtWidgets.QDateTimeEdit()  # Создаем виджет для редактирования даты и времени
         date_time_edit.setDateTime(
-            QtCore.QDateTime.currentDateTime())  # Установка текущей даты и времени в QDateTimeEdit
+            QtCore.QDateTime.currentDateTime()
+        )  # Установка текущей даты и времени в QDateTimeEdit
         date_time_edit.setCalendarPopup(True)  # Включение выпадающего календаря в QDateTimeEdit
 
         v_layout = QtWidgets.QVBoxLayout()  # Создаем вертикальный layout

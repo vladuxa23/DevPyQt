@@ -20,10 +20,11 @@ class Window(QtWidgets.QMainWindow):
         self.toolBarSec = self.addToolBar("Second")
         self.toolBarSec.addAction("Edit_2")
         self.toolBarSec.addAction("Edit_3")
+        se
 
         # statusBar отсутствует у QWidgets
         self.appStatusBar = self.statusBar()
-        self.appStatusBar.showMessage("Status: Ok!", timeout=2000)
+        self.appStatusBar.showMessage("Status: Ok!", timeout=20000)
 
         # Настройка компоновки окна
         layout = QtWidgets.QHBoxLayout()
