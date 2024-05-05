@@ -39,15 +39,15 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        if event.button() == QtCore.Qt.LeftButton:
+        if event.button() == QtCore.Qt.MouseButton.LeftButton:
             print(ctime(), "mousePressEvent LEFT")
             self.label.setText("mousePressEvent LEFT")
 
-        elif event.button() == QtCore.Qt.MiddleButton:
+        elif event.button() == QtCore.Qt.MouseButton.MiddleButton:
             print(ctime(), "mousePressEvent MIDDLE")
             self.label.setText("mousePressEvent MIDDLE")
 
-        elif event.button() == QtCore.Qt.RightButton:
+        elif event.button() == QtCore.Qt.MouseButton.RightButton:
             print(ctime(), "mousePressEvent RIGHT")
             self.label.setText("mousePressEvent RIGHT")
 
@@ -59,15 +59,15 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        if event.button() == QtCore.Qt.LeftButton:
+        if event.button() == QtCore.Qt.MouseButton.LeftButton:
             print(ctime(), "mouseReleaseEvent LEFT")
             self.label.setText("mouseReleaseEvent LEFT")
 
-        elif event.button() == QtCore.Qt.MiddleButton:
+        elif event.button() == QtCore.Qt.MouseButton.MiddleButton:
             print(ctime(), "mouseReleaseEvent MIDDLE")
             self.label.setText("mouseReleaseEvent MIDDLE")
 
-        elif event.button() == QtCore.Qt.RightButton:
+        elif event.button() == QtCore.Qt.MouseButton.RightButton:
             print(ctime(), "mouseReleaseEvent RIGHT")
             self.label.setText("mouseReleaseEvent RIGHT")
 
@@ -79,15 +79,15 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        if event.button() == QtCore.Qt.LeftButton:
+        if event.button() == QtCore.Qt.MouseButton.LeftButton:
             print(ctime(), "mouseDoubleClickEvent LEFT")
             self.label.setText("mouseDoubleClickEvent LEFT")
 
-        elif event.button() == QtCore.Qt.MiddleButton:
+        elif event.button() == QtCore.Qt.MouseButton.MiddleButton:
             print(ctime(), "mouseDoubleClickEvent MIDDLE")
             self.label.setText("mouseDoubleClickEvent MIDDLE")
 
-        elif event.button() == QtCore.Qt.RightButton:
+        elif event.button() == QtCore.Qt.MouseButton.RightButton:
             print(ctime(), "mouseDoubleClickEvent RIGHT")
             self.label.setText("mouseDoubleClickEvent RIGHT")
 
