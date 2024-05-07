@@ -23,6 +23,19 @@ class Window(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
+        self.__initUi()
+        self.__initSignals()
+
+    def __initUi(self):
+        label = QtWidgets.QLabel(self)
+        label.setText("<h1>Пройдите регистрацию</h1>")
+
+        self.__pushButton = QtWidgets.QPushButton(self)
+        self.__pushButton.setText("Зарегистрироваться")
+
+    def __initSignals(self):
+        pass
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
