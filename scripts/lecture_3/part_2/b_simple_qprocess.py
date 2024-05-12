@@ -22,7 +22,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        self.pushButton = QtWidgets.QPushButton("Показать список файлов")
+        self.pushButton = QtWidgets.QPushButton("Запуск процесса")
 
         self.plainTextEdit = QtWidgets.QPlainTextEdit()
         self.plainTextEdit.setReadOnly(True)

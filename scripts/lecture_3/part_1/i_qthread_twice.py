@@ -107,7 +107,7 @@ class Window(QtWidgets.QWidget):
         self.thread.progress.connect(self.reportProgress)
         self.thread.finished.connect(lambda: print("Поток остановлен"))
 
-        self.weather_thread.data_responsed.connect(self.ip_updated)
+        self.weather_thread.data_responced.connect(self.ip_updated)
         self.weather_thread.started.connect(lambda: print("Поток погоды запущен"))
 
     def runLongProcess(self) -> None:
