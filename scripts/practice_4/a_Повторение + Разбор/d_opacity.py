@@ -1,4 +1,8 @@
+import os
+
 from PySide6 import QtWidgets, QtCore, QtGui
+
+from conf import ROOT_FOLDER
 
 
 class Window(QtWidgets.QWidget):
@@ -19,7 +23,7 @@ class Window(QtWidgets.QWidget):
         #
         label = QtWidgets.QLabel()
         label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        label.setPixmap(QtGui.QPixmap('64.png'))
+        label.setPixmap(QtGui.QPixmap(os.path.join(ROOT_FOLDER, 'static', 'ico', "64.png")))
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(label)
         layout.addWidget(QtWidgets.QPushButton("123156"))
