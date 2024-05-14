@@ -67,14 +67,14 @@ class Window(QtWidgets.QWidget):
 
         self.label = QtWidgets.QLabel("Выполнение долгой задачи: ")
         self.pushButton = QtWidgets.QPushButton("Запустить долгую задачу")
-        self.pushButtonWeather = QtWidgets.QPushButton("Получить данные по ip")
+        self.pushButtonApi = QtWidgets.QPushButton("Получить данные по ip")
         self.pushButtonOtherProcess = QtWidgets.QPushButton("Другие действия с GUI")
         self.plainTextEdit = QtWidgets.QPlainTextEdit()
 
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(self.label)
         layout.addWidget(self.pushButton)
-        layout.addWidget(self.pushButtonWeather)
+        layout.addWidget(self.pushButtonApi)
         layout.addWidget(self.pushButtonOtherProcess)
         layout.addWidget(self.plainTextEdit)
 
@@ -88,7 +88,7 @@ class Window(QtWidgets.QWidget):
         """
 
         self.thread = WorkerOne()
-        self.weather_thread = WorkerTwo()
+        self.api_thread = WorkerTwo()
 
     def initSignals(self) -> None:
         """
@@ -102,13 +102,13 @@ class Window(QtWidgets.QWidget):
             lambda: self.plainTextEdit.appendPlainText(f"{time.ctime()}: push clicked")
         )
 
-        self.pushButtonWeather.clicked.connect(self.weather_thread.start)
+        self.pushButtonApi.clicked.connect(self.api_thread.start)
 
         self.thread.progress.connect(self.reportProgress)
         self.thread.finished.connect(lambda: print("Поток остановлен"))
 
-        self.weather_thread.data_responced.connect(self.ip_updated)
-        self.weather_thread.started.connect(lambda: print("Поток погоды запущен"))
+        self.api_thread.data_responced.connect(self.ip_updated)
+        self.api_thread.started.connect(lambda: print("Поток погоды запущен"))
 
     def runLongProcess(self) -> None:
         """

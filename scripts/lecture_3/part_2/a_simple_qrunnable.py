@@ -12,6 +12,7 @@ logging.basicConfig(format="%(message)s", level=logging.INFO)
 
 
 class Runnable(QtCore.QRunnable):
+    
     def __init__(self, thread_number):
         super().__init__()
         self.thread_number = thread_number
@@ -82,6 +83,8 @@ class Window(QtWidgets.QWidget):
             runnable = Runnable(thread_number)
 
             threadPool.start(runnable)
+
+        print('All tasks added')
 
 
 if __name__ == '__main__':

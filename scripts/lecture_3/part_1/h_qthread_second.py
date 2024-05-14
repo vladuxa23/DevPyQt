@@ -71,6 +71,7 @@ class Window(QtWidgets.QWidget):
             lambda: self.plainTextEdit.appendPlainText(f"{time.ctime()}: push clicked")
         )
 
+        self.thread.started.connect(lambda: print("Thread started"))
         self.thread.progress.connect(self.reportProgress)
         self.thread.finished.connect(lambda: self.pushButton.setEnabled(True))
 
