@@ -10,8 +10,8 @@ class Window(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)  # Удаление titleBar
-        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)  # Установка прозрачного фона
+        self.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)  # Удаление titleBar
+        self.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)  # Установка прозрачного фона
 
         # добавление эффекта тени
         self.shadow = QtWidgets.QGraphicsDropShadowEffect(self)
@@ -20,6 +20,7 @@ class Window(QtWidgets.QWidget):
         self.shadow.setYOffset(10)
         self.shadow.setColor(QtGui.QColor(0, 0, 0, 120))
         self.setGraphicsEffect(self.shadow)
+
         #
         label = QtWidgets.QLabel()
         label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -29,7 +30,6 @@ class Window(QtWidgets.QWidget):
         layout.addWidget(QtWidgets.QPushButton("123156"))
 
         self.setLayout(layout)
-
 
         # self.setStyleSheet('border: 5px solid black; background-image: "64.png"')
 
