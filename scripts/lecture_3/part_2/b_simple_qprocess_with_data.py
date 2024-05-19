@@ -22,7 +22,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        self.pushButton = QtWidgets.QPushButton("Показать список файлов")
+        self.pushButton = QtWidgets.QPushButton("Запустить другой процесс")
 
         self.plainTextEdit = QtWidgets.QPlainTextEdit()
         self.plainTextEdit.setReadOnly(True)
@@ -56,8 +56,8 @@ class Window(QtWidgets.QWidget):
             self.process.readyReadStandardError.connect(self.handleError)
             self.process.stateChanged.connect(self.handleStateChange)
             self.process.finished.connect(self.processFinished)
-            # self.process.start("python", ["c_other_py_script.py"])  # запуск py скрипта в отдельном потоке
-            self.process.start("tracert", ["8.8.8.8"])  # запуск команды ping в отдельном потоке
+            self.process.start("python", ["c_other_py_script.py"])  # запуск py скрипта в отдельном потоке
+            # self.process.start("tracert", ["8.8.8.8"])  # запуск команды ping в отдельном потоке
 
     def handleError(self) -> None:
         """
@@ -82,7 +82,7 @@ class Window(QtWidgets.QWidget):
         print("Обработан сигнал стандартного вывода")
 
         data = self.process.readAllStandardOutput()
-        stdout = bytes(data).decode("utf8")
+        stdout = bytes(data).decode("utf-8", "ignore")
         self.plainTextEdit.appendPlainText(stdout)
 
     def handleStateChange(self, state) -> None:
@@ -94,9 +94,9 @@ class Window(QtWidgets.QWidget):
         """
 
         states = {
-            QtCore.QProcess.NotRunning: 'Not running',
-            QtCore.QProcess.Starting: 'Starting',
-            QtCore.QProcess.Running: 'Running',
+            QtCore.QProcess.ProcessState.NotRunning: 'Not running',
+            QtCore.QProcess.ProcessState.Starting: 'Starting',
+            QtCore.QProcess.ProcessState.Running: 'Running',
         }
         state_name = states[state]
         self.plainTextEdit.appendPlainText(f"Состояние изменено: {state_name}")

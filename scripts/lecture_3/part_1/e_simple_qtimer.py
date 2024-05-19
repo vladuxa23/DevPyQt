@@ -1,6 +1,7 @@
 """
 Простейшее использование класса QTimer
 """
+import time
 
 from PySide6 import QtWidgets, QtCore
 
@@ -58,8 +59,9 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        time = QtCore.QDateTime.currentDateTime()
-        timeDisplay = time.toString('yyyy-MM-dd hh:mm:ss dddd')
+        t = QtCore.QDateTime.currentDateTime()
+        # time.sleep(3)
+        timeDisplay = t.toString('yyyy-MM-dd hh:mm:ss dddd')
         self.labelTime.setText(timeDisplay)
 
 

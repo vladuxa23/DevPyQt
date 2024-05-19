@@ -39,7 +39,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        self.button.pressed.connect(self.startCounter)
+        self.button.clicked.connect(self.startCounter)
 
     def startCounter(self) -> None:
         """
