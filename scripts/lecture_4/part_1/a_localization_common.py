@@ -53,12 +53,12 @@ class Window(QtWidgets.QWidget):
         # Получение корневого каталога
         root_dir = Path(__file__).parent.parent.parent.parent
         # Получение каталога, где находятся стандартные переводы
-        if os.name=='posix':
+        if os.name == 'posix':
             qt_translation_folder = os.path.join(
-                root_dir, "venv", "lib", "python3.11", "site-packages", "PySide6", "Qt","translations"
+                root_dir, "venv", "lib", "python3.11", "site-packages", "PySide6", "Qt", "translations"
             )
         else:
-            qt_translation_folder = os.path.join(root_dir, "venv", "Lib", "site-packages", "PySide6", "translations")
+            qt_translation_folder = os.path.join(root_dir, ".venv", "Lib", "site-packages", "PySide6", "translations")
         # Инициализируем класс QTranslator
         translator = QtCore.QTranslator(self)
         # Загружаем файл qm для перевода стандартных элементов

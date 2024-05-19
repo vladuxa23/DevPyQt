@@ -3,7 +3,7 @@
 """
 
 from PySide6 import QtCore, QtWidgets, QtGui
-from random_word import RandomWords
+from random_words import RandomWords
 
 
 class Window(QtWidgets.QWidget):
@@ -55,7 +55,7 @@ class Window(QtWidgets.QWidget):
         :return: списковая модель
         """
 
-        lst = self.random_words.get_random_words()
+        lst = self.random_words.random_words(count=50)
         return QtCore.QStringListModel(lst)
 
     def createQStandardItemModel(self) -> QtGui.QStandardItemModel:
@@ -66,7 +66,7 @@ class Window(QtWidgets.QWidget):
         """
 
         sim = QtGui.QStandardItemModel()
-        lst = self.random_words.get_random_words()
+        lst = self.random_words.random_words(count=50)
 
         for row, elem in enumerate(lst):
             item1 = QtGui.QStandardItem(str(row + 10))

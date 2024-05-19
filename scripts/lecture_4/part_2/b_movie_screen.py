@@ -1,10 +1,12 @@
 """
 Демонстрация работы с QMovie
 """
-
+import os
 import time
 
 from PySide6 import QtCore, QtWidgets, QtGui
+
+from conf import ROOT_FOLDER
 
 
 class LoadScreen(QtWidgets.QWidget):
@@ -27,7 +29,7 @@ class LoadScreen(QtWidgets.QWidget):
 
         self.hide()  # скрываем по умолчанию
 
-        self.movie = QtGui.QMovie("static/gif/load_1.gif")
+        self.movie = QtGui.QMovie(os.path.join(ROOT_FOLDER, 'static', 'gif', 'load_2.gif'))
         # self.movie = QtGui.QMovie("static/gif/load_2.gif")
 
         labelAnimation = QtWidgets.QLabel()

@@ -70,4 +70,4 @@ if __name__ == "__main__":
     myapp = PushButtonLighter()
     myapp.show()
 
-    app.exec_()
+    app.exec()

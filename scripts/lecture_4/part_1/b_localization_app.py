@@ -95,7 +95,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        if event.type() == QtCore.QEvent.LanguageChange:
+        if event.type() == QtCore.QEvent.Type.LanguageChange:
             self.retranslateUi()
         super().changeEvent(event)
 

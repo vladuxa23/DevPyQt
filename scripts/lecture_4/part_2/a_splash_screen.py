@@ -1,9 +1,11 @@
 """
 Демонстрация работы с QSplashScreen
 """
-
+import os
 import time
 from PySide6 import QtCore, QtWidgets, QtGui
+
+from conf import ROOT_FOLDER
 
 
 class SplashScreen(QtWidgets.QSplashScreen):
@@ -43,14 +45,14 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        # splash = QtWidgets.QSplashScreen(QtGui.QPixmap("static/img/splash.jpg"))
-        splash = SplashScreen(QtGui.QPixmap("static/img/splash.jpg"))
-        splash.showMessage("Загрузка данных...     0%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom, QtCore.Qt.white)
+        splash = QtWidgets.QSplashScreen(QtGui.QPixmap(os.path.join(ROOT_FOLDER, 'static', 'images', 'python.png')))
+        # splash = SplashScreen(QtGui.QPixmap(os.path.join(ROOT_FOLDER, 'static', 'images', 'python.png')))
+        splash.showMessage("Загрузка данных...     0%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom, QtCore.Qt.black)
         splash.show()
         for _ in range(100):
             time.sleep(0.05)
             if (_ % 10) == 0:
-                splash.showMessage(f"Загрузка данных...     {_}%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter, QtCore.Qt.white)
+                splash.showMessage(f"Загрузка данных...     {_}%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter, QtCore.Qt.black)
 
         splash.finish(self)
         self.show()

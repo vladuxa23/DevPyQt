@@ -3,7 +3,7 @@
 """
 
 from PySide6 import QtWidgets
-from random_word import RandomWords
+from random_words import RandomWords
 
 
 class Window(QtWidgets.QWidget):
@@ -79,7 +79,7 @@ class Window(QtWidgets.QWidget):
 
         comboBox = QtWidgets.QComboBox()
         comboBox.setObjectName(f"comboBox_{self.layout_dynamic.count()}")
-        comboBox.addItems(self.randomWords.get_random_words())
+        comboBox.addItems(self.randomWords.random_words(count=10))
         comboBox.currentIndexChanged.connect(lambda: print(comboBox.objectName(), comboBox.currentText()))
 
         return comboBox

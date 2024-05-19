@@ -3,7 +3,7 @@
 """
 
 from PySide6 import QtCore, QtWidgets
-from random_word import RandomWords
+from random_words import RandomWords
 
 
 class Window(QtWidgets.QWidget):
@@ -42,7 +42,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        random_word = RandomWords().get_random_words()
+        random_word = RandomWords().random_words(count=15)
 
         self.listModel = QtCore.QStringListModel(random_word)
 

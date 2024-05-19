@@ -5,7 +5,7 @@
 from typing import Union, Any
 
 from PySide6 import QtCore, QtWidgets
-from random_word import RandomWords
+from random_words import RandomWords
 
 
 class MyModel(QtCore.QAbstractListModel):
@@ -136,7 +136,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        model = MyModel(RandomWords().get_random_words())
+        model = MyModel(RandomWords().random_words(count=50))
         self.proxyModel = SortFilterProxyModel()
         self.proxyModel.setSourceModel(model)
 

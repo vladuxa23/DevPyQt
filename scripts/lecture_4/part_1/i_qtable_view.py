@@ -5,7 +5,7 @@
 import random
 
 from PySide6 import QtCore, QtWidgets, QtGui
-from random_word import RandomWords
+from random_words import RandomWords
 
 
 class Window(QtWidgets.QWidget):
@@ -42,7 +42,7 @@ class Window(QtWidgets.QWidget):
 
         self.tableModel = QtGui.QStandardItemModel()
 
-        random_words = RandomWords().get_random_words()
+        random_words = RandomWords().random_words(count=50)
 
         for row, elem in enumerate(random_words):
             item1 = QtGui.QStandardItem(str(row + 10))
