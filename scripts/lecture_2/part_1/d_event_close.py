@@ -22,7 +22,7 @@ class Window(QtWidgets.QWidget):
             self, "Закрыть окно?", "Вы действительно хотите закрыть окно?"
         )
 
-        if answer == QtWidgets.QMessageBox.Yes:
+        if answer == QtWidgets.QMessageBox.StandardButton.Yes:
             event.accept()
         else:
             event.ignore()

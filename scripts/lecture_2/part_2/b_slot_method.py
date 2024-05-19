@@ -67,6 +67,7 @@ class Window(QtWidgets.QWidget):
 
         :return: None
         """
+        print(self.sender().text())
 
         a = int(self.lineEditA.text())
         b = int(self.lineEditB.text())
@@ -80,6 +81,7 @@ class Window(QtWidgets.QWidget):
 
         :return: None
         """
+        print(self.sender().text())
 
         a = int(self.lineEditA.text())
         b = int(self.lineEditB.text())

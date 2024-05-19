@@ -1,6 +1,7 @@
 """
 Подключение сигнала к анонимной функции
 """
+import time
 
 from PySide6 import QtWidgets
 
@@ -33,7 +34,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        self.pushButton.clicked.connect(lambda: print("Выполняю lambda функцию"))
+        self.pushButton.clicked.connect(lambda: print(f"{time.ctime()}: Выполняю lambda функцию"))
 
 
 if __name__ == "__main__":

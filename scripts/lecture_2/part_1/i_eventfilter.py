@@ -36,12 +36,14 @@ class Window(QtWidgets.QWidget):
         :return: bool
         """
 
+        # print(watched, event)
+
         if watched == self.label and event.type() == QtCore.QEvent.Type.MouseButtonPress:
             print("mouse pressed")
 
         if watched == self.label and event.type() == QtCore.QEvent.Type.Wheel:
             print("wheel changed")
-            print(event.angleDelta())
+            print(type(event))
 
         return super(Window, self).eventFilter(watched, event)
 
