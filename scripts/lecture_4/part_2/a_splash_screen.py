@@ -45,8 +45,8 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        splash = QtWidgets.QSplashScreen(QtGui.QPixmap(os.path.join(ROOT_FOLDER, 'static', 'images', 'python.png')))
-        # splash = SplashScreen(QtGui.QPixmap(os.path.join(ROOT_FOLDER, 'static', 'images', 'python.png')))
+        # splash = QtWidgets.QSplashScreen(QtGui.QPixmap(os.path.join(ROOT_FOLDER, 'static', 'images', 'python.png')))
+        splash = SplashScreen(QtGui.QPixmap(os.path.join(ROOT_FOLDER, 'static', 'images', 'python.png')))
         splash.showMessage("Загрузка данных...     0%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom, QtCore.Qt.black)
         splash.show()
         for _ in range(100):

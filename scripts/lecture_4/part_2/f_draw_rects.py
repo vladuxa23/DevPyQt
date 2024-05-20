@@ -30,6 +30,7 @@ class Window(QtWidgets.QWidget):
         painter.setBrush(brush)
         painter.drawRects(rects)
 
+
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
 

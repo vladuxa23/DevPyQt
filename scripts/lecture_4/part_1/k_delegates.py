@@ -27,7 +27,8 @@ class DoubleSpinBoxDelegate(QtWidgets.QStyledItemDelegate):
         """
 
         # создание и настройка делегата
-        editor = QtWidgets.QDoubleSpinBox(parent, decimals=2)
+        editor = QtWidgets.QDoubleSpinBox(parent)
+        editor.setDecimals(2)
         editor.setFrame(False)
         editor.setMinimum(-40)
         editor.setMaximum(40)

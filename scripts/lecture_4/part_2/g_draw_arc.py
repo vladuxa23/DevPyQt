@@ -8,7 +8,7 @@ class Window(QtWidgets.QWidget):
     def paintEvent(self, event: QtGui.QPaintEvent) -> None:
         painter = QtGui.QPainter(self)
 
-        painter.drawArc(50, 20, 500, 200, 4 * 0, 16 * 90)
+        painter.drawArc(50, 20, 500, 200, 4 * 0, 16 * 180)
 
         # drawArc(x, y, w, h, a, alen) – дуга;
         # x, y, w, h – < int > – область рисования дуги;

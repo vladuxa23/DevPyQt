@@ -86,6 +86,7 @@ class Window(QtWidgets.QWidget):
         self.translatorApp = QtCore.QTranslator(self)
 
         self.setLocalization()
+        self.retranslateUi()
 
     def changeEvent(self, event: QtCore.QEvent) -> None:
         """
@@ -118,7 +119,7 @@ class Window(QtWidgets.QWidget):
                 root_dir, "venv", "lib", "python3.11", "site-packages", "PySide6", "Qt", "translations"
             )
         else:
-            qt_translation_folder = os.path.join(root_dir, "venv", "Lib", "site-packages", "PySide6", "translations")
+            qt_translation_folder = os.path.join(root_dir, ".venv", "Lib", "site-packages", "PySide6", "translations")
 
         if lang == "ru":
             QtCore.QCoreApplication.removeTranslator(self.translator)
@@ -126,10 +127,10 @@ class Window(QtWidgets.QWidget):
             self.translatorApp.load(os.path.join(qt_translation_folder, f"qtbase_ru.qm"))
 
         elif lang == "en":
-            self.translator.load(os.path.join(os.getcwd(), "translations", f"to_en.qm"))
+            self.translator.load(os.path.join(os.getcwd(), f"to_en.qm"))
             QtCore.QCoreApplication.installTranslator(self.translator)
-
-            self.translatorApp.load(os.path.join(qt_translation_folder, f"qtbase_en.qm"))
+            path = os.path.join(qt_translation_folder, f"qtbase_en.qm")
+            self.translatorApp.load(path)
 
         QtCore.QCoreApplication.installTranslator(self.translatorApp)
 
