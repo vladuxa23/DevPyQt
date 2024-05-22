@@ -8,7 +8,9 @@
     <file>ico/icons8-джейк-32.png</file>
     <file>ico/icons8-джейк-64.png</file>
   </qresource>
-  <qresource prefix="img">
-    <file>img/splash.jpg</file>
+  <qresource prefix="images">
+    <file>images/airplane.gif</file>
+    <file>images/python.png</file>
+    <file>images/splash.jpg</file>
   </qresource>
 </RCC>

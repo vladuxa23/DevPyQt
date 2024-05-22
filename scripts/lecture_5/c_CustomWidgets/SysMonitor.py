@@ -35,7 +35,7 @@ class SystemMonitorGUI(QtWidgets.QWidget):
             widget_link = layout.itemAt(cpu_count).widget()
 
             widget_link.progressBar.setValue(cpu_percent_list[cpu_count])
-            widget_link.cpuLabel.setText(f"CPU №{cpu_count+1} - {cpu_percent_list[cpu_count]}")
+            widget_link.cpuLabel.setText(f"CPU №{cpu_count + 1} - {cpu_percent_list[cpu_count]}")
 
 
 class SystemMonitor(QtCore.QThread):
@@ -50,8 +50,6 @@ class SystemMonitor(QtCore.QThread):
 class CPUWidget(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(CPUWidget, self).__init__(parent)
-
-
 
         self.progressBar = QtWidgets.QProgressBar()
         self.progressBar.setRange(0, 100)

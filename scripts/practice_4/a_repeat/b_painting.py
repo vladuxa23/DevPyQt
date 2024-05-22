@@ -14,7 +14,21 @@ class QPaletteButton(QtWidgets.QPushButton):
 
         self.color = color
         self.setFixedSize(QtCore.QSize(24, 24))
-        self.setStyleSheet("background-color: %s;" % color)
+        self.setStyleSheet(f"border: 1px solid black; border-radius: 12px;background-color: {self.color};")
+
+        self.setCheckable(True)
+
+    def setActive(self, status):
+        if status:
+            self.setActivate()
+        else:
+            self.setDeactivate()
+
+    def setActivate(self):
+        self.setStyleSheet(f"border: 3px solid white; border-radius: 10px;background-color: {self.color};")
+
+    def setDeactivate(self):
+        self.setStyleSheet(f"border: 1px solid black; border-radius: 10px;background-color: {self.color};")
 
 
 class Canvas(QtWidgets.QLabel):
@@ -86,7 +100,17 @@ class Window(QtWidgets.QWidget):
         for c in COLORS:
             b = QPaletteButton(c)
             b.pressed.connect(lambda c=c: self.canvas.set_pen_color(c))
+            b.clicked.connect(self.chooseButton)
             layout.addWidget(b)
+
+    def chooseButton(self):
+        l = self.layout().itemAt(1).layout()
+        for i in range(l.count()):
+            widget = l.itemAt(i).widget()
+            if widget is self.sender():
+                widget.setActivate()
+                continue
+            widget.setDeactivate()
 
 
 if __name__ == '__main__':

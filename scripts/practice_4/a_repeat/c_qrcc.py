@@ -1,13 +1,13 @@
 from PySide6 import QtWidgets, QtGui
 from static import res
 
+res.qInitResources()
+
 
 class Window(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-
-        res.qInitResources()
 
         pushButton = QtWidgets.QPushButton()
         icon = QtGui.QIcon(":/ico/ico/icons8-джейк-16.png")
