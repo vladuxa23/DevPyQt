@@ -8,29 +8,35 @@
 в него сохранённый текст
 """
 
-from PySide6 import QtWidgets
+from PySide6 import QtWidgets, QtCore
 
 
-class Window(QtWidgets.QWidget):
+class QPlainTextEditWithSaveData(QtWidgets.QPlainTextEdit):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.__initUi()
 
-    def __initUi(self):
-        self.__plainTextEdit = QtWidgets.QPlainTextEdit()
+        self.__loadSettings()
+
+    def closeEvent(self, event):
+
+        self.__saveSettings()
+
+        return super().closeEvent(event)
 
     def __loadSettings(self):
-        pass
+        settings = QtCore.QSettings("SimpleTextEditApp")
+        self.setPlainText(settings.value("text", ""))
 
     def __saveSettings(self):
-        pass
+        settings = QtCore.QSettings("SimpleTextEditApp")
+        settings.setValue("text", self.toPlainText())
 
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
 
-    window = Window()
+    window = QPlainTextEditWithSaveData()
     window.show()
 
     app.exec()

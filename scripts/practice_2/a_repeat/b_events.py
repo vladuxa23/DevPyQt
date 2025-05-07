@@ -7,6 +7,7 @@
 (переопределить метод event), вывод событий производить в консоль.
 При выводе события указывать время, когда произошло событие.
 """
+import time
 
 from PySide6 import QtWidgets, QtCore
 
@@ -17,7 +18,9 @@ class Window(QtWidgets.QWidget):
         super().__init__(parent)
 
     def event(self, event: QtCore.QEvent):
-        pass
+        print(time.ctime(), "---->", event)
+
+        return super().event(event)
 
 
 if __name__ == "__main__":

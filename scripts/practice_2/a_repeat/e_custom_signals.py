@@ -15,7 +15,7 @@
   (пароль можно показать в терминале в захешированном виде)
 """
 
-from PySide6 import QtWidgets
+from PySide6 import QtWidgets, QtCore
 
 
 class Window(QtWidgets.QWidget):
@@ -29,12 +29,59 @@ class Window(QtWidgets.QWidget):
     def __initUi(self):
         label = QtWidgets.QLabel(self)
         label.setText("<h1>Пройдите регистрацию</h1>")
+        label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
         self.__pushButton = QtWidgets.QPushButton(self)
         self.__pushButton.setText("Зарегистрироваться")
 
+        l = QtWidgets.QVBoxLayout()
+        l.addWidget(label)
+        l.addWidget(self.__pushButton)
+
+        self.setLayout(l)
+
     def __initSignals(self):
-        pass
+        self.__pushButton.clicked.connect(self.showRegistrationWindow)
+
+    def showRegistrationWindow(self):
+        self.r_w = RegistrationWindow()
+        self.r_w.registered.connect(self.userDataRecieved)
+        self.r_w.show()
+
+    def userDataRecieved(self, data):
+        print(data)
+
+
+class RegistrationWindow(QtWidgets.QWidget):
+    registered = QtCore.Signal(tuple)
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        self.__initUi()
+
+    def __initUi(self):
+        self.lineEditLogin = QtWidgets.QLineEdit()
+        self.lineEditLogin.setPlaceholderText("Введите логин")
+
+        self.lineEditPassword = QtWidgets.QLineEdit()
+        self.lineEditPassword.setPlaceholderText("Введите пароль")
+        self.lineEditPassword.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
+
+        self.pushButtonRegistration = QtWidgets.QPushButton("Регистрация")
+        self.pushButtonRegistration.clicked.connect(self.onPushButtonRegistrationClicked)
+
+        l = QtWidgets.QVBoxLayout()
+        l.addWidget(self.lineEditLogin)
+        l.addWidget(self.lineEditPassword)
+        l.addWidget(self.pushButtonRegistration)
+
+        self.setLayout(l)
+
+    def onPushButtonRegistrationClicked(self):
+        user_data = self.lineEditLogin.text(), self.lineEditPassword.text()
+        self.registered.emit(user_data)
+        self.close()
 
 
 if __name__ == "__main__":

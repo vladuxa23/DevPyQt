@@ -21,22 +21,41 @@ class Window(QtWidgets.QWidget):
 
     def __initUi(self):
         self.lineEditInput = QtWidgets.QLineEdit()
+        self.lineEditInput.setPlaceholderText("Введите фразу")
+
         self.lineEditMirror = QtWidgets.QLineEdit()
 
         self.pushButtonMirror = QtWidgets.QPushButton('Mirror')
         self.pushButtonClear = QtWidgets.QPushButton('Clear')
 
+        l_lineEdit = QtWidgets.QHBoxLayout()
+        l_lineEdit.addWidget(self.lineEditInput)
+        l_lineEdit.addWidget(self.lineEditMirror)
+
+        l_pushButton = QtWidgets.QHBoxLayout()
+        l_pushButton.addWidget(self.pushButtonMirror)
+        l_pushButton.addWidget(self.pushButtonClear)
+
+        l_main = QtWidgets.QVBoxLayout()
+        l_main.addLayout(l_lineEdit)
+        l_main.addLayout(l_pushButton)
+
+        self.setLayout(l_main)
+
     def __initSignals(self):
-        pass
+        self.pushButtonMirror.clicked.connect(self.__onPushButtonMirrorClicked)
+        self.pushButtonClear.clicked.connect(self.__onPushButtonClearClicked)
+        self.lineEditInput.textChanged.connect(self.__onLineEditMirrorTextChanged)
 
     def __onPushButtonMirrorClicked(self):
-        pass
+        self.lineEditMirror.setText(self.lineEditInput.text()[::-1])
 
     def __onPushButtonClearClicked(self):
-        pass
+        self.lineEditMirror.clear()
+        self.lineEditInput.clear()
 
     def __onLineEditMirrorTextChanged(self, text):
-        print(text)
+        self.lineEditMirror.setText(text[::-1])
 
 
 if __name__ == "__main__":
