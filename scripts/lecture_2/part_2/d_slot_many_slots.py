@@ -34,7 +34,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        self.pushButton.clicked.connect(lambda x: print(x))
+        self.pushButton.clicked.connect(lambda status: print(status))
         self.pushButton.clicked.connect(self.onPushButtonClicked)
 
     def onPushButtonClicked(self, checked) -> None:

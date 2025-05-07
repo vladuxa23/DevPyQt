@@ -14,16 +14,16 @@ class Window(QtWidgets.QWidget):
 
         self.setWindowTitle('MyFirstWindow')
         self.setWindowIcon(QtGui.QIcon(os.path.join(ROOT_FOLDER, 'static', 'images', 'python.png')))
-        self.setGeometry(500, 400, 250, 350)
-
-        print(self.pos())
-        print(self.size())
-        print(self.frameGeometry())
-        print(self.width(), self.height())
-
-        self.setMinimumHeight(100)
-        self.setMinimumWidth(200)
-
+        self.setGeometry(2100, 400, 250, 350)
+        #
+        # print(self.pos())
+        # print(self.size())
+        # print(self.frameGeometry())
+        # print(self.width(), self.height())
+        #
+        # self.setMinimumHeight(100)
+        # self.setMinimumWidth(200)
+        #
         self.setMaximumSize(600, 800)
 
 

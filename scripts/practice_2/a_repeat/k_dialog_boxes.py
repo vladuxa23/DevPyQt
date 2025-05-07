@@ -148,9 +148,9 @@ class Window(QtWidgets.QWidget):
             self, "Продолжить обработку", "Вы хотите продолжить выполнение цикла?",
         )
 
-        if answer == QtWidgets.QMessageBox.Yes:
+        if answer == QtWidgets.QMessageBox.StandardButton.Yes:
             self.plainTextEdit.setPlainText("Продолжаю обработку")
-        elif answer == QtWidgets.QMessageBox.No:
+        elif answer == QtWidgets.QMessageBox.StandardButton.No:
             self.plainTextEdit.setPlainText("Обработка остановлена")
 
     def show_message_warning(self) -> None:

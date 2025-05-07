@@ -114,6 +114,8 @@ class Child(QtWidgets.QWidget):
         :return: None
         """
 
+        # some backend
+
         self.custom_signal.emit(self.lineEdit.text())
 
 

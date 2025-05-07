@@ -80,10 +80,6 @@ class Window(QtWidgets.QWidget):
 
         data = self.settings.value("CheckState")
         self.checkBox.setCheckState(self.settings.value("CheckState", QtCore.Qt.Unchecked))
-        # if self.settings.value("CheckState") == "true":
-        #     self.checkBox.setCheckState(QtCore.Qt.Checked)
-        # else:
-        #     self.checkBox.setCheckState(QtCore.Qt.Unchecked)
 
     def showSettingsPath(self) -> None:
         """
@@ -101,6 +97,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
+        print(self.settings.allKeys())
         self.settings.clear()
         print(self.settings.allKeys())
 

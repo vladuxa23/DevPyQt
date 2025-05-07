@@ -20,7 +20,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        self.pushButton = QtWidgets.QPushButton("Выполнить функцию")
+        self.pushButton = QtWidgets.QCheckBox("Выполнить функцию")
 
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(self.pushButton)
@@ -34,7 +34,7 @@ class Window(QtWidgets.QWidget):
         :return: None
         """
 
-        self.pushButton.clicked.connect(lambda: print(f"{time.ctime()}: Выполняю lambda функцию"))
+        self.pushButton.clicked.connect(lambda data: print(f"{time.ctime()}: Выполняю lambda функцию, сигнал clicked возвращает значение {data}"))
 
 
 if __name__ == "__main__":

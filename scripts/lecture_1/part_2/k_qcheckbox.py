@@ -19,6 +19,10 @@ class Window(QtWidgets.QWidget):
         ch_box_js = QtWidgets.QCheckBox("JavaScript")  # Создаем чекбокс с надписью "JavaScript"
         ch_box_java = QtWidgets.QCheckBox("Java")  # Создаем чекбокс с надписью "Java"
 
+        ch_box_java.setChecked(True)
+        print(ch_box_java.isChecked())
+        print(ch_box_python.isChecked())
+
         # Создание метки
         hbox = QtWidgets.QHBoxLayout()  # Создаем горизонтальный макет
         hbox.addWidget(ch_box_python)  # Добавляем чекбокс "Python" в горизонтальный макет

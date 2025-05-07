@@ -2,7 +2,7 @@
 Открытие нескольких окон из основного
 """
 
-from PySide6 import QtWidgets, QtCore, QtGui
+from PySide6 import QtWidgets
 
 
 class MainWindow(QtWidgets.QWidget):
@@ -63,8 +63,8 @@ class OtherWindow(QtWidgets.QWidget):
         """
 
         self.setFixedSize(300, 300)
-        label = QtWidgets.QLineEdit("Hello", self)
-        label.move(10, 10)
+        self.lineEdit = QtWidgets.QLineEdit("Hello", self)
+        self.lineEdit.move(10, 10)
 
 
 if __name__ == "__main__":
