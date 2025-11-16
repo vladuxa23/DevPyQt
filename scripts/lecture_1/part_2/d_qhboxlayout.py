@@ -28,7 +28,7 @@ class Window(QtWidgets.QWidget):
         h_box.addWidget(btn3)  # Добавление кнопки 3 в макет
         h_box.addWidget(btn4)  # Добавление кнопки 4 в макет
         h_box.addWidget(btn5)  # Добавление кнопки 5 в макет
-        h_box.addSpacing(100)  # Добавление дополнительного расстояния между кнопками
+        h_box.addSpacing(100)  # Добавление дополнительного расстояния после кнопок
 
         self.setLayout(h_box)  # Установка горизонтального макета для окна
 

@@ -13,7 +13,7 @@ class Window(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.setGeometry(200, 200, 2100, 400)  # Установка геометрии окна
+        self.setGeometry(50, 50, 1600, 400)  # Установка геометрии окна
         self.setWindowTitle("Приложение")  # Установка заголовка окна
         # Установка иконки окна
         self.setWindowIcon(QtGui.QIcon(os.path.join(ROOT_FOLDER, 'static', 'images', 'python.png')))

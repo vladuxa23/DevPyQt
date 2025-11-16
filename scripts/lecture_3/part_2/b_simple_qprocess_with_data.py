@@ -11,7 +11,6 @@ class Window(QtWidgets.QWidget):
         super().__init__(parent)
 
         self.process = None
-
         self.initUi()
         self.initSignals()
 

@@ -12,18 +12,18 @@ class Window(QtWidgets.QMainWindow):
         # menuBar отсутствует у QWidgets
         self.fileMenu = self.menuBar().addMenu('File')
         self.fileMenu.addAction("Open")
-
-        # toolBar отсутствует у QWidgets
+        #
+        # # toolBar отсутствует у QWidgets
         self.toolBarFirst = self.addToolBar("First")
         self.toolBarFirst.addAction("Edit_1")
-
+        #
         self.toolBarSec = self.addToolBar("Second")
         self.toolBarSec.addAction("Edit_2")
         self.toolBarSec.addAction("Edit_3")
-
+        #
         # statusBar отсутствует у QWidgets
         self.appStatusBar = self.statusBar()
-        self.appStatusBar.showMessage("Status: Ok!", timeout=20000)
+        self.appStatusBar.showMessage("Status: Ok!", timeout=2000)
 
         # Настройка компоновки окна
         layout = QtWidgets.QHBoxLayout()
@@ -34,7 +34,6 @@ class Window(QtWidgets.QMainWindow):
 
         layout.addWidget(QtWidgets.QLabel("Надпись"))
         layout.addWidget(self.abc)
-
         # Центральный виджет особенность QMainWindow
         centralWidget = QtWidgets.QWidget()
         centralWidget.setLayout(layout)
