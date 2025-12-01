@@ -6,15 +6,15 @@
 Предлагается создать приложение-которое будет
 с некоторой периодичностью вызывать определённую функцию.
 """
-import time
 
-from PySide6 import QtWidgets, QtCore
+from PySide6 import QtWidgets, QtCore, QtGui
 
 
 class ClockWidget(QtWidgets.QDateTimeEdit):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+
         self.__initUi()
         self.showCurrentDateTime()
         self.__initTimer()
@@ -38,18 +38,36 @@ class ClockWidget(QtWidgets.QDateTimeEdit):
         self.setDateTime(current_datetime)
 
 
+class CommonWidget(QtWidgets.QWidget):
+    def __init__(self, parnet=None):
+        super().__init__(parnet)
+
+        self.move(1200, 800)
+        self.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)  # Удаление titleBar
+
+        g = QtGui.QGuiApplication.primaryScreen().availableGeometry()
+
+        self.move(
+            g.right() - self.frameGeometry().width(),
+            g.bottom() - self.frameGeometry().height()
+        )
+
+
+        self.clockWidget = ClockWidget()
+        self.label = QtWidgets.QLabel("ЦИФРОВЫЕ ЧАСЫ")
+        self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+
+        l = QtWidgets.QVBoxLayout()
+        l.addWidget(self.label)
+        l.addWidget(self.clockWidget)
+
+        self.setLayout(l)
+
+
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
 
-    w = QtWidgets.QWidget()
-    l = QtWidgets.QVBoxLayout()
-    lbl = QtWidgets.QLabel("Какой то текст")
-    clock = ClockWidget()
-
-    l.addWidget(clock)
-    l.addWidget(lbl)
-
-    w.setLayout(l)
+    w = CommonWidget()
     w.show()
 
     app.exec()

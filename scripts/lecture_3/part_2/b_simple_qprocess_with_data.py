@@ -55,8 +55,8 @@ class Window(QtWidgets.QWidget):
             self.process.readyReadStandardError.connect(self.handleError)
             self.process.stateChanged.connect(self.handleStateChange)
             self.process.finished.connect(self.processFinished)
-            self.process.start("python", ["c_other_py_script.py"])  # запуск py скрипта в отдельном потоке
-            # self.process.start("tracert", ["8.8.8.8"])  # запуск команды ping в отдельном потоке
+            # self.process.start("python", ["c_other_py_script.py"])  # запуск py скрипта в отдельном потоке
+            self.process.start("ping", ["8.8.8.8"])  # запуск команды ping в отдельном потоке
 
     def handleError(self) -> None:
         """
@@ -68,7 +68,8 @@ class Window(QtWidgets.QWidget):
         print("Обработан сигнал вывода ошибки")
 
         data = self.process.readAllStandardError()
-        stderr = bytes(data).decode("utf8")
+        print(type(data))
+        stderr = bytes(data).decode("866")
         self.plainTextEdit.appendPlainText(stderr)
 
     def handleOutput(self) -> None:
@@ -81,7 +82,8 @@ class Window(QtWidgets.QWidget):
         print("Обработан сигнал стандартного вывода")
 
         data = self.process.readAllStandardOutput()
-        stdout = bytes(data).decode("utf-8", "ignore")
+        print(type(data))
+        stdout = bytes(data).decode("866", "ignore")
         self.plainTextEdit.appendPlainText(stdout)
 
     def handleStateChange(self, state) -> None:

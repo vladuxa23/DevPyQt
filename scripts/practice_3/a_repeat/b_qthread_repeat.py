@@ -22,6 +22,32 @@ from PySide6 import QtWidgets, QtCore
 from scripts.practice_3.a_repeat.a_qtimer_repeat import ClockWidget
 
 
+class MainThread(QtCore.QThread):
+    checked = QtCore.Signal(int)
+
+    def __init__(self, url, delay=1, parent=None):
+        super().__init__(parent)
+        self.url = url
+        self.__status = None
+        self.__delay = delay
+
+    def stop(self):
+        self.__status = False
+
+    def setDelay(self, delay):
+        self.__delay = delay
+
+    def run(self):
+        self.__status = True
+        while self.__status:
+            try:
+                r = requests.get(self.url, timeout=3)
+                self.checked.emit(r.status_code)
+                self.sleep(self.__delay)
+            except Exception:
+                traceback.print_exc()
+                self.stop()
+
 class Window(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
@@ -76,31 +102,7 @@ class Window(QtWidgets.QWidget):
         self.plainTextEditLog.appendPlainText(f"{time.ctime()} >>> {text}")
 
 
-class MainThread(QtCore.QThread):
-    checked = QtCore.Signal(int)
 
-    def __init__(self, url, delay=1, parent=None):
-        super().__init__(parent)
-        self.url = url
-        self.__status = None
-        self.__delay = delay
-
-    def stop(self):
-        self.__status = False
-
-    def setDelay(self, delay):
-        self.__delay = delay
-
-    def run(self):
-        self.__status = True
-        while self.__status:
-            try:
-                r = requests.get(self.url, timeout=3)
-                self.checked.emit(r.status_code)
-                self.sleep(self.__delay)
-            except Exception:
-                traceback.print_exc()
-                self.stop()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication()

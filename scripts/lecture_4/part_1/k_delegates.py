@@ -209,7 +209,6 @@ class Window(QtWidgets.QWidget):
         stm.setHorizontalHeaderLabels(headers)
 
         data = [x for x in os.listdir()]
-
         stm.setRowCount(len(data))
 
         for row in range(len(data)):
@@ -226,6 +225,17 @@ class Window(QtWidgets.QWidget):
         self.tableView.setItemDelegateForColumn(5, self.comboBoxDelegate)
         self.tableView.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         self.tableView.resizeColumnsToContents()
+
+        # открытие редакторов
+        for row in range(stm.rowCount()):
+            idx_btn = stm.index(row, 4)
+            self.tableView.openPersistentEditor(idx_btn)
+
+            idx_combo = stm.index(row, 5)
+            self.tableView.openPersistentEditor(idx_combo)
+
+            idx_spin = stm.index(row, 1)
+            self.tableView.openPersistentEditor(idx_spin)
 
     @staticmethod
     def getDataFromRow(push_row: QtCore.QModelIndex) -> None:

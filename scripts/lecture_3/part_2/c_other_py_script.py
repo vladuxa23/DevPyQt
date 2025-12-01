@@ -5,7 +5,7 @@ import time
 def clear_console():
     sys.stdout.flush()
     sys.stderr.flush()
-    time.sleep(0.5)
+    time.sleep(1)
 
 
 sys.stdout.write("Script output 1\n")

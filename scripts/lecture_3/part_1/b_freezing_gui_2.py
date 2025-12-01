@@ -1,10 +1,17 @@
 """
 Демонстрация 'падения' приложения из-за обработки событий в основном потоке
 """
-
+import faulthandler
+import os
+import sys
 import time
 
 from PySide6 import QtWidgets, QtCore
+
+faulthandler.enable()
+if os.name == 'nt':
+    import msvcrt
+    msvcrt.setmode(sys.stderr.fileno(), os.O_TEXT)
 
 
 class Window(QtWidgets.QWidget):

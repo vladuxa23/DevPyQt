@@ -7,6 +7,8 @@ from pathlib import Path
 
 from PySide6 import QtCore, QtWidgets, QtGui
 
+from conf import ROOT_FOLDER
+
 
 class Window(QtWidgets.QWidget):
 
@@ -127,7 +129,7 @@ class Window(QtWidgets.QWidget):
             self.translatorApp.load(os.path.join(qt_translation_folder, f"qtbase_ru.qm"))
 
         elif lang == "en":
-            self.translator.load(os.path.join(os.getcwd(), f"to_en.qm"))
+            self.translator.load(os.path.join(ROOT_FOLDER, "static", "translations", f"to_en.qm"))
             QtCore.QCoreApplication.installTranslator(self.translator)
             path = os.path.join(qt_translation_folder, f"qtbase_en.qm")
             self.translatorApp.load(path)
